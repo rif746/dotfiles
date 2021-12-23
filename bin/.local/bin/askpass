@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+
+
+rofi -dmenu -p 'Password' -l 0 -sep '|' -password -no-default-config

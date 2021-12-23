@@ -1,0 +1,31 @@
+#!/usr/bin/python
+
+from pyrof.rofi import Rofi
+
+
+rofi = Rofi()
+rofi.base_command = ['rofi', '-no-default-config']
+rofi.dmenu = False
+rofi.show = 'window'
+rofi.show_icons = True
+rofi.icon_theme = 'dracula-icons'
+rofi.font = 'FiraCode Nerd Font 11'
+rofi.theme_str = """
+    listview {
+        lines: 2;
+    }
+    element {
+        orientation: vertical;
+    }
+    element-icon {
+        size: 128;
+        horizontal-align: 0;
+    }
+    inputbar {
+        children: [textbox-prompt-colon,entry];
+    }
+    textbox-prompt-colon {
+        str: "Windows | ";
+    }
+    """
+rofi()

@@ -1,0 +1,29 @@
+#!/usr/bin/python
+
+from pyrof.rofi import Rofi
+import os
+
+
+menu = {
+        " Logout": "pkill -u $USER",
+        "鈴 Suspend": "systemctl suspend",
+        "勒 Restart": "systemctl reboot",
+        "襤 Shutdown": "systemctl poweroff"
+    }
+rofi = Rofi()
+rofi.base_command = ['rofi', '-no-default-config']
+rofi.font = 'FiraCode Nerd Font 14'
+rofi.dmenu = True
+rofi.theme_str = """
+    listview {
+        lines: 2;
+        columns: 2;
+    }
+    inputbar {
+        children: [prompt];
+    }
+    """
+rofi.prompt = 'System Exit'
+rofi = rofi(menu)
+
+os.system(rofi.value)

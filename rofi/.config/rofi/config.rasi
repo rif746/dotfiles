@@ -1,0 +1,50 @@
+* {
+		background: rgba(40, 42, 54, 100%);
+		selected-bg: rgba(68, 71, 90, 100%);
+		fg: rgba(242, 248, 242, 100%);
+}
+listview {
+		expand: true;
+		cycle: true;
+		margin: 10px;
+		text-align: center;
+		background-color: var(background);
+}
+element {
+		color: var(fg);
+		padding: 10px;
+		background-color: var(background);
+		border-radius: 10px;
+}
+element selected {
+		background-color: var(selected-bg);
+}
+element-icon {
+		size: 62;
+}
+element-text, element-icon {
+		color: inherit;
+		background-color: inherit;
+}
+mainbox {
+		background-color: var(background);
+}
+window {
+		width: 450px;
+		padding: 10px;
+		border-radius: 10px;
+		background-color: var(background);
+}
+inputbar {
+		children: [textbox-prompt-colon,entry];
+		background-color: var(background);
+		margin: 10px 20px;
+}
+textbox-prompt-colon,entry,separator,prompt {
+		background-color: var(background);
+		text-color: var(fg);
+		color: var(fg);
+}
+textbox-prompt-colon {
+		expand: false;
+}

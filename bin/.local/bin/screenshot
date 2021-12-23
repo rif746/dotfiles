@@ -1,0 +1,27 @@
+#!/usr/bin/python
+
+from pyrof.rofi import Rofi
+import os
+
+path = os.getenv('HOME') + "/Pictures/"
+
+menu = {
+    "Fullscreen": "flameshot full -p ",
+    "Rectangle": "flameshot gui -p ",
+}
+rofi = Rofi()
+rofi.base_command = ['rofi', '-no-default-config']
+rofi.font = 'FiraCode Nerd Font 14'
+rofi.dmenu = True
+rofi.theme_str = """
+    listview {
+        lines: 1;
+        columns: 2;
+    }
+    inputbar {
+        children: [prompt];
+    }
+    """
+rofi.prompt = 'Screenshot'
+rofi = rofi(menu)
+os.system(rofi.value+path)

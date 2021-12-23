@@ -1,0 +1,20 @@
+#!/usr/bin/sh
+
+
+ACT=""
+
+if [ "$1" != "" ]; then
+	AMOUNT=5%
+fi
+if [ "$1" = "dec" ]; then
+	ACT="-"
+fi
+
+if [ "$1" = "inc" ]; then
+	ACT="+"
+fi
+
+amixer sset Master $AMOUNT$ACT
+VOL=`awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master)`
+
+notify-send Volume -h int:value:$VOL

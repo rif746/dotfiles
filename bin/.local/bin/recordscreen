@@ -1,0 +1,43 @@
+#!/usr/bin/python
+
+from pyrof.rofi import Rofi
+from subprocess import call, DEVNULL, STDOUT
+import datetime
+
+
+filename = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
+record_stat = call(['pgrep', 'ffmpeg'], stdout=DEVNULL, stderr=STDOUT)
+if record_stat == 1:
+    menu = {
+        "Record": "",
+        "Cancel": "",
+    }
+else:
+    menu = {
+        'Stop Record': "",
+        'Cancel': ""
+    }
+rofi = Rofi()
+rofi.base_command = ['rofi', '-no-default-config']
+rofi.font = 'FiraCode Nerd Font 14'
+rofi.dmenu = True
+rofi.theme_str = """
+    listview {
+        lines: 1;
+        columns: 2;
+    }
+    inputbar {
+        children: [prompt];
+    }
+    """
+rofi.prompt = 'Screen Record'
+rofi = rofi(menu)
+
+if rofi.selected == 'Record':
+    call(['ffmpeg', '-video_size', '1366x768', '-framerate', '25',
+          '-f', 'x11grab', '-i', ':0.0', '-f', 'alsa', '-ac', '2',
+          '-i', 'hw:0,0', '-acodec', 'mp3', '-vcodec', 'libx264',
+          '-preset', 'ultrafast', '-threads', '0', f"{filename}.mp4"],
+         stderr=STDOUT, stdout=DEVNULL)
+elif rofi.selected == 'Stop Record':
+    call(['pkill', 'ffmpeg'])

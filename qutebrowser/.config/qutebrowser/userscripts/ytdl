@@ -1,0 +1,70 @@
+#!/usr/bin/python
+
+from pyrof.rofi import Rofi
+import os
+
+path = os.getenv('HOME') + "/Pictures/"
+
+menu = {
+    "360p": "-f 134",
+    "480p": "-f 135",
+    "720p": "-f 22",
+    "Sound Only": "-x --audio-format mp3"
+}
+
+rofi = Rofi()
+rofi.base_command = ['rofi', '-no-default-config']
+rofi.font = 'FiraCode Nerd Font 14'
+rofi.dmenu = True
+rofi.theme_str = """
+    * {
+        background: rgba(40, 42, 54, 100%);
+        selected-bg: rgba(68, 71, 90, 100%);
+        fg: rgba(242, 248, 242, 100%);
+    }
+    listview {
+        margin: 10px;
+        lines: 5;
+        text-align: center;
+        background-color: var(background);
+        expand: true;
+        cycle: true;
+    }
+    element {
+        color: var(fg);
+        padding: 10px;
+        background-color: var(background);
+        horizontal-align: 0.5;
+        border-radius: 10px;
+    }
+    element selected {
+        background-color: var(selected-bg);
+    }
+    element-text {
+        color: inherit;
+        background-color: inherit;
+    }
+    mainbox {
+        background-color: var(background);
+    }
+    window {
+        width: 250px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: var(background);
+    }
+    inputbar {
+        children: [prompt];
+        background-color: var(background);
+        margin: 10px 20px;
+    }
+    prompt {
+        background-color: var(background);
+        horizontal-align: 0.5;
+        color: var(fg);
+    }
+    """
+rofi.prompt = 'YouTube Downloader'
+rofi = rofi(menu)
+os.system(f"""kitty -e yt-dlp {os.getenv('QUTE_URL')} {rofi.value} -o \\
+        '/mnt/Data/Video/Download/%(title)s.%(ext)s'""")

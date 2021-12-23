@@ -1,0 +1,280 @@
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+
+set drawbox true
+set icons true
+set dirfirst true
+
+
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/* | application/json) $EDITOR "$f" ;;
+        image/*) feh --scale-down "$f" & disown ;;
+        *) xdg-open "$f" &> /dev/null & disown ;;
+    esac
+}}
+
+cmd mkdir ${{
+    clear
+    echo -n "Directory Name : "
+    read ans
+    mkdir "$ans"
+    clear
+}}
+
+cmd mkfile ${{
+    clear
+    echo -n "File Name : "
+    read ans
+    $EDITOR "$ans"
+    clear
+}}
+
+cmd fzf ${{
+    clear
+    res=$(fzf --reverse --header='Jump To Location')
+    if [ -f "$res" ]; then
+        cmd="select"
+    else
+        cmd="cd"
+    fi
+    lf -remote "send $id $cmd \"$res\""
+    clear
+}}
+
+cmd remove ${{
+    clear
+    if [ -z "$fs" ]; then
+        echo "$f"
+        echo -n "Delete ? [y/n] "
+        read ans
+        [ "$ans" = "y" ] && rm -rf "$f"
+    else
+        printf "$fs\n"
+        echo -n "Delete ? [y/n] "
+        read ans
+        if [ "$ans" = "y" ]; then
+            IFS=$'\n'
+            for f in $fs; do
+                echo "Removing $f"
+                rm -rf "$f"
+            done
+        else
+            echo "Cancelled"
+        fi
+    fi
+    clear
+}}
+
+cmd copy_paste ${{
+    clear
+    if [ -z $fs ]; then
+        echo "No File or Directory Selected"
+        sleep 1;
+    else
+        IFS=$'\n'
+        for f in $fs; do
+            cp -r "$f"  "$(pwd)/" &
+            progress -m
+        done
+        lf -remote "send unselect"
+        lf -remote "send reload"
+    fi
+    clear
+}}
+
+cmd move_paste ${{
+    clear
+    if [ -z $fs ]; then
+        echo "No File or Directory Selected"
+        sleep 1;
+    else
+        IFS=$'\n'
+        for f in $fs; do
+            mv "$f"  "$(pwd)/" &
+            progress -m
+        done
+        lf -remote "send unselect"
+        lf -remote "send reload"
+    fi
+    clear
+}}
+
+cmd dragandrop ${{
+  clear
+  IFS=$'\n'
+  dragon-drag-and-drop -a -x $fx
+  clear
+}}
+
+cmd dragandropcopy ${{
+  clear
+  file=$(dragon-drag-and-drop -t -x)
+  IFS=$'\n'
+  for f in $file; do
+    file=$(echo $f | sed 's/file:\/\///' | sed 's/%20/ /')
+    cp "$file"  "$(pwd)/" &
+    progress -m
+  done
+  clear
+}}
+
+cmd dragandropmove ${{
+  clear
+  files=$(dragon-drag-and-drop -t -x)
+  IFS=$'\n'
+  for f in $files; do
+    file=$(echo $f | sed 's/file:\/\///' | sed 's/%20/ /')
+    mv "$file"  "$(pwd)/" &
+    progress -m
+  done
+  clear
+}}
+
+cmd unarchive ${{
+      clear
+      if [ -z "$fs" ]; then
+        FOLDER=$(basename "$f" | sed 's/\(.*\)\..*/\1/')    
+        case "$f" in
+          *.zip) 
+             unzip "$f" -d "$(pwd)/$FOLDER" ;;
+          *.rar)
+             DIRNOW=$(pwd)
+             DIR=$(unrar lb "$f")
+             IFS=$'\n'
+             for i in $DIR; do
+               if [[ ! "${i%/*}" = "$FOLDER" ]]; then
+                 mkdir "$(pwd)/$FOLDER"
+                 cd "$(pwd)/$FOLDER"
+                 break
+               fi
+             done
+             unrar x "$f"
+             cd $DIRNOW
+             ;;
+          *.tar.*) 
+             mkdir "$(pwd)/${FOLDER%.*}"
+             tar -xf "$f" --directory="$(pwd)/${FOLDER%.*}" --verbose
+             ;;
+        esac
+    else
+        echo "Do you want to extract "
+        printf "$fs\n"
+        echo -n "to $(pwd) ? [y/n] "
+        read ans
+        if [[ "$ans" = "y" ]]; then
+            IFS=$'\n'
+            for f in $fs; do
+              clear
+              FOLDER=$(basename "$f" | sed 's/\(.*\)\..*/\1/') 
+              case "$f" in
+                  *.zip) 
+                      unzip "$f" -d "$(pwd)/$FOLDER" ;;
+                  *.rar)
+                      DIRNOW=$(pwd)
+                      DIR=$(unrar lb "$f")
+                      IFS=$'\n'
+                      for i in $DIR; do
+                        if [[ ! "${i%/*}" = "$FOLDER" ]]; then
+                          mkdir "$(pwd)/$FOLDER"
+                          cd "$(pwd)/$FOLDER"
+                          break
+                        fi
+                      done
+                      unrar x "$f"
+                      cd $DIRNOW
+                      ;;
+                  *.tar.gz) 
+                      mkdir "$(pwd)/${FOLDER%.*}"
+                      tar -xf "$f" --directory="$(pwd)/${FOLDER%.*}" --verbose
+                      ;;
+                esac
+            done
+        fi
+    fi
+    lf -remote "send unselect"
+    lf -remote "send reload"
+    clear
+}}
+
+cmd archive_zip ${{
+    clear
+    if [ -z "$fs" ]; then
+        files=$(basename "$f" | sed 's/\(.*\)\..*/\1/')
+        file=$(basename "$f")
+        if [ -d "$f" ]; then
+            ex="/*"
+        fi
+        zip -r "$(pwd)/$files.zip" "$file"$ex
+    else
+        echo "zip this files ?"
+        printf "$fs\n"
+        echo "=============================="
+        echo -n " [y/n] "
+        read ans
+        if [[ "$ans" = "y" ]]; then
+            echo -n "zip name : "
+            read ans
+            file=()
+            for f in $fs; do
+                if [ -d "$f" ]; then
+                    file+="$(basename "$f")/* "
+                else
+                    file+="$(basename "$f") "
+                fi
+            done
+            zip "$(pwd)/$ans" $file
+        fi
+    fi
+    lf -remote "send unselect"
+    clear
+}}
+
+cmd setwp ${{
+  clear
+  echo "Setting up Wallpaper"
+  cp "$f" ~/.config/.wallpaper.png
+  feh --bg-fill "$f"
+  clear
+}}
+
+cmd setLockScreen ${{
+  clear
+  betterlockscreen -u "$f"
+  betterlockscreen -l dim
+  clear
+}}
+
+# unmap default mapping
+map d
+map s
+map /
+map g
+map c
+map y
+map p
+map w
+
+# custom mapping
+map <enter> open
+map +d mkdir
+map +f mkfile
+map <delete> remove
+map au unarchive
+map az archive_zip
+map cc copy_paste
+map cm move_paste
+map dd cd /mnt/Data
+map d/ cd /
+map dh cd ~
+map ds cd /srv/http
+map dm cd /run/media
+map ds cd /run/user/1000/gvfs
+map g set hidden!
+map / fzf
+map b ${{ nvim $(pwd) }}
+map xx dragandrop
+map xc dragandropcopy
+map xm dragandropmove
+map wp setwp
+map wl setLockScreen
