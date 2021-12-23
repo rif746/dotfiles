@@ -1,0 +1,10 @@
+mpv/.config/mpv/watch_later
+mpd/.config/mpd/database
+mpd/.config/mpd/state
+mpd/.config/mpd/pid
+qutebrowser/.config/qutebrowser/__pycache__
+qutebrowser/.config/qutebrowser/bookmarks
+qutebrowser/.config/qutebrowser/autoconfig.yml
+qutebrowser/.config/qutebrowser/dracula/__pycache__
+zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/zhistory
