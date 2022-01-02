@@ -1,43 +1,60 @@
 #!/usr/bin/python
 
 from pyrof.rofi import Rofi
-from subprocess import call, DEVNULL, STDOUT
 import datetime
+from os import system
 
 
 filename = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
-record_stat = call(['pgrep', 'ffmpeg'], stdout=DEVNULL, stderr=STDOUT)
-if record_stat == 1:
-    menu = {
-        "Record": "",
-        "Cancel": "",
-    }
-else:
-    menu = {
-        'Stop Record': "",
-        'Cancel': ""
-    }
-rofi = Rofi()
-rofi.base_command = ['rofi', '-no-default-config']
-rofi.font = 'FiraCode Nerd Font 14'
-rofi.dmenu = True
-rofi.theme_str = """
-    listview {
-        lines: 1;
-        columns: 2;
-    }
-    inputbar {
-        children: [prompt];
-    }
-    """
-rofi.prompt = 'Screen Record'
-rofi = rofi(menu)
+record_stat = system("pgrep ffmpeg")
 
-if rofi.selected == 'Record':
-    call(['ffmpeg', '-video_size', '1366x768', '-framerate', '25',
-          '-f', 'x11grab', '-i', ':0.0', '-f', 'alsa', '-ac', '2',
-          '-i', 'hw:0,0', '-acodec', 'mp3', '-vcodec', 'libx264',
-          '-preset', 'ultrafast', '-threads', '0', f"{filename}.mp4"],
-         stderr=STDOUT, stdout=DEVNULL)
-elif rofi.selected == 'Stop Record':
-    call(['pkill', 'ffmpeg'])
+
+def start_record(with_webcam=False):
+    system("notify-send Recording")
+    if with_webcam:
+        system("""mpv av://v4l2:/dev/video0 --vf=hflip --title=webcam \
+                --profile=low-latency --untimed &""")
+    system(f"""ffmpeg -video_size 1366x768 -framerate 25 -f x11grab \
+            -i :0.0 -f alsa -ac 2 -i hw:0,0 -acodec mp3 -vcodec \
+            libx264 -preset ultrafast -threads 0 ~/Videos/{filename}.mp4 &""")
+
+
+def runner(run):
+    if run == 'Record':
+        start_record()
+    elif run == 'Stop Record':
+        system('pkill ffmpeg')
+        system('pkill mpv')
+        system('notify-send \'Recorded to ' + filename + '\'')
+    elif run == 'Record + Webcam':
+        start_record(with_webcam=True)
+
+
+def generate_menu():
+    if record_stat != 0:
+        menu = {
+            "Record": "",
+            "Record + Webcam": "",
+            "Cancel": ""
+        }
+    else:
+        menu = {
+            'Stop Record': "",
+            'Cancel': ""
+        }
+    return menu
+
+
+def main():
+    rofi = Rofi()
+    rofi.base_command = ['rofi', '-no-default-config']
+    rofi.font = 'FiraCode Nerd Font 14'
+    rofi.dmenu = True
+    rofi.theme_str = "listview {lines: 1;columns: 2;}"
+    rofi.theme_str += "inputbar {children: [prompt];}"
+    rofi.prompt = 'Screen Record'
+    rofi = rofi(generate_menu())
+    runner(rofi.selected)
+
+
+main()

@@ -11,7 +11,10 @@ music_list = dict()
 playlist = dict()
 menu = dict()
 music_path = dict()
-client.connect('localhost', '6600')
+try:
+    client.connect('localhost', '6600')
+except Exception:
+    sub.call(['notify-send', 'mpd not connected'])
 current_song = ''
 
 
@@ -38,15 +41,8 @@ def scan_music(d=''):
     rofi.base_command = ['rofi', '-no-default-config']
     rofi.font = 'FiraCode Nerd Font 14'
     rofi.dmenu = True
-    rofi.theme_str = """
-        listview {
-            lines: 4;
-        }
-        inputbar {
-            children: [prompt,entry];
-        }
-        """
-    rofi.prompt = 'Add Music to Playlist | '
+    rofi.theme_str = "listview { lines: 4; }"
+    rofi.prompt = 'Add Music to Playlist'
     rofi = rofi(music_list)
     music_path[rofi.selected] = rofi.selected
     if 'mp3' not in rofi.selected:
@@ -75,15 +71,8 @@ def playlist():
     rofi.font = 'FiraCode Nerd Font 14'
     rofi.dmenu = True
     rofi.select = client.status()['songid'] or 0
-    rofi.theme_str = """
-        listview {
-            lines: 4;
-        }
-        inputbar {
-            children: [prompt,entry];
-        }
-        """
-    rofi.prompt = 'Playlist | '
+    rofi.theme_str = "listview { lines: 4; }"
+    rofi.prompt = 'Playlist'
     rofi = rofi(music_list)
     client.play(rofi.value)
 
@@ -107,19 +96,15 @@ def main():
     rofi.base_command = ['rofi', '-no-default-config']
     rofi.font = 'FiraCode Nerd Font 14'
     rofi.dmenu = True
-    rofi.theme_str = """
-        listview {
-            lines: 1;
-            columns: 7;
-        }
-        element-text {
-            horizontal-align: 0.5;
-        }
-        inputbar {
-            children: [prompt];
-        }
-        """
-    rofi.prompt = " " + client.currentsong()['title']
+    rofi.theme_str = "listview {lines:1;columns:7;}"
+    rofi.theme_str += "element-text{horizontal-align:0.5;}"
+    rofi.theme_str += "inputbar {children:[prompt];}"
+    try:
+        song = client.currentsong()
+        currsong = f"{song['title']}"
+    except Exception:
+        currsong = 'Music Player Daemon'
+    rofi.prompt = " " + currsong
     rofi = rofi(menu)
     val = rofi.value
     if val == 'ncmpcpp':

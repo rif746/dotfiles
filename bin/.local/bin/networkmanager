@@ -111,20 +111,9 @@ def menu():
     rofi.base_command = ['rofi', '-no-default-config']
     rofi.dmenu = True
     rofi.font = 'FiraCode Nerd Font 11'
-    rofi.theme_str = """
-        listview {
-            lines: 4;
-        }
-        element-text {
-            horizontal-align: 0;
-        }
-        inputbar {
-            children: [textbox-prompt-colon,entry];
-        }
-        textbox-prompt-colon {
-            str: "Network | ";
-        }
-        """
+    rofi.prompt = "Network"
+    rofi.theme_str = "listview { lines: 4; }"
+    rofi.theme_str += "element-text{horizontal-align:0;}"
     rofi = rofi(wifi_list)
     return rofi
 
@@ -152,20 +141,9 @@ def password(ssid):
     rofi.dmenu = True
     rofi.font = 'FiraCode Nerd Font 11'
     rofi.password = True
-    rofi.theme_str = """
-        listview {
-            lines: 0;
-        }
-        element-text {
-            horizontal-align: 0;
-        }
-        inputbar {
-            children: [textbox-prompt-colon,entry];
-        }
-        textbox-prompt-colon {
-            str: "Password | ";
-        }
-        """
+    rofi.prompt = 'Password'
+    rofi.theme_str = "listview { lines: 4; }"
+    rofi.theme_str += "element-text{horizontal-align:0;}"
     rofi = rofi()
     call(['nmcli', 'device', 'wifi', 'connect', ssid,
          'password', rofi.selected])

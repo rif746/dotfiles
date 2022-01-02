@@ -14,15 +14,8 @@ rofi = Rofi()
 rofi.base_command = ['rofi', '-no-default-config']
 rofi.font = 'FiraCode Nerd Font 14'
 rofi.dmenu = True
-rofi.theme_str = """
-    listview {
-        lines: 2;
-        columns: 2;
-    }
-    inputbar {
-        children: [prompt];
-    }
-    """
+rofi.theme_str = "listview{lines:2;columns:2;}"
+rofi.theme_str += "inputbar{children:[prompt];}"
 rofi.prompt = 'System Exit'
 rofi = rofi(menu)
 

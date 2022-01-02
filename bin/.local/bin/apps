@@ -10,19 +10,7 @@ rofi.show = 'drun'
 rofi.show_icons = True
 rofi.icon_theme = 'dracula-icons'
 rofi.font = 'FiraCode Nerd Font 11'
-rofi.theme_str = """
-    listview {
-        lines: 4;
-        columns: 3;
-    }
-    element {
-        orientation: vertical;
-    }
-    element-icon,element-text {
-        horizontal-align: 0.5;
-    }
-    textbox-prompt-colon {
-        str: "Application | ";
-    }
-    """
+rofi.theme_str = "listview{lines:4;columns: 3;}"
+rofi.theme_str += "element{orientation:vertical;}"
+rofi.theme_str += "element-icon,element-text{horizontal-align:0.5;}"
 rofi()

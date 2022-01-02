@@ -33,15 +33,8 @@ def main():
     rofi.base_command = ['rofi', '-no-default-config']
     rofi.font = 'FiraCode Nerd Font 14'
     rofi.dmenu = True
-    rofi.theme_str = """
-        listview {
-            lines: 4;
-        }
-        inputbar {
-            children: [prompt,entry];
-        }
-        """
-    rofi.prompt = 'Service | '
+    rofi.theme_str = "listview { lines: 4; }"
+    rofi.prompt = 'Service'
     rofi = rofi(service)
     if 'inactive' in rofi.selected:
         sub.call(['sudo', '-A', 'systemctl', 'start', rofi.value])
