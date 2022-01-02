@@ -36,15 +36,16 @@ window {
 		background-color: var(background);
 }
 inputbar {
-		children: [textbox-prompt-colon,entry];
+		children: [prompt,textbox-prompt-colon,entry];
 		background-color: var(background);
 		margin: 10px 20px;
 }
-textbox-prompt-colon,entry,separator,prompt {
+textbox-prompt-colon,entry,prompt {
 		background-color: var(background);
 		text-color: var(fg);
 		color: var(fg);
 }
 textbox-prompt-colon {
+		str: " | ";
 		expand: false;
 }
