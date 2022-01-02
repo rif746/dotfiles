@@ -51,3 +51,6 @@ map("n", "gdn", "<cmd>Lspsaga diagnostic_jump_next<cr>", {silent = true, noremap
 map("n", "gdb", "<cmd>Lspsaga diagnostic_jump_prev<cr>", {silent = true, noremap = true})
 map("n", "<C-k>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>")
 map("n", "<C-j>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")
+
+-- Rest Nvim
+map('n', 're', "<cmd>lua require('rest-nvim').run()<cr>", { silent = true, noremap = true })

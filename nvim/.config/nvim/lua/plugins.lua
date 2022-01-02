@@ -37,6 +37,9 @@ paq { "akinsho/bufferline.nvim" }
 paq { "rcarriga/nvim-notify" }
 paq { 'nvim-lualine/lualine.nvim' }
 
+-- VCS sign
+paq { 'mhinz/vim-signify' }
+
 -- File Manager
 paq { "kyazdani42/nvim-web-devicons" }
 paq { "kyazdani42/nvim-tree.lua" }
@@ -53,6 +56,10 @@ paq {'alvan/vim-closetag'}
 
 -- Shortcut Helper
 paq {'folke/which-key.nvim'}
+
+-- RestAPI
+paq {"NTBBloodbath/rest.nvim"}
+paq {"nvim-lua/plenary.nvim"}
 
 -- Markdown Support
 paq {'iamcco/markdown-preview.nvim'}
