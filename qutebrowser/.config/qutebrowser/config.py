@@ -16,6 +16,7 @@ def settings(c):
     c.content.javascript.enabled = True
     c.content.javascript.can_access_clipboard = True
     c.content.pdfjs = False
+    c.content.blocking.method = 'both'
 
     # Colors Theme
     c.colors.webpage.preferred_color_scheme = 'dark'

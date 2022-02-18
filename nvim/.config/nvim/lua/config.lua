@@ -62,9 +62,6 @@ au BufEnter NvimTree setlocal statusline=%!DisableST()
 cmd 'au VimEnter * silent !xmodmap -e "clear lock" -e "keycode 0x42 = Escape"'
 cmd 'au VimLeave * silent !xmodmap -e "clear lock" -e "keycode 0x42 = Caps_Lock"'
 
--- Code Documentation on Hover
-cmd 'au CursorHold * :Lspsaga hover_doc'
-
 -- Vim Config
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
 opt('o', 'shiftwidth', indent)                        -- Size of an indent

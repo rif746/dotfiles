@@ -15,6 +15,7 @@ init('cssls')
 init('jsonls')
 init('intelephense')
 init('clangd')
+init('gopls')
 
 -- pyright
 -- require('lspconfig').pyright.setup{
