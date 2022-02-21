@@ -2,7 +2,7 @@
 Ringkasan untuk materi Introduction to Algorithm and Golang.
 
 ### Algoritma
-Algoritma adalah prosedur komputasi yang ddefinisikan dengan baik yang mengambil beberapa nilai sebagai input untuk menghasilkan beberapa nilai berupa output.
+Algoritma adalah prosedur komputasi yang didefinisikan dengan baik yang mengambil beberapa nilai sebagai input untuk menghasilkan beberapa nilai berupa output.
 
 ##### Karakteristik Algoritma
 1. Memiliki Batas Awal dan Akhir
@@ -20,7 +20,7 @@ Print Luas
 ```
 
 ### Flowchart
-Flowchart adalah suatu bagan dengan simbol tertentu yang menggambarkan hubungan antar proses secara mendatail.
+Flowchart adalah suatu bagan dengan simbol tertentu yang menggambarkan hubungan antar proses secara mendetail.
 
 ##### Simbol Flowchart
 | Simbol | Keterangan |

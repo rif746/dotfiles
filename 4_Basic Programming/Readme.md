@@ -1,6 +1,8 @@
 # Basic Programming
 materi keempat adalah Basic Programming, dimana kita belajar tentang dasar pemrograman menggunakan bahasa go.
 
+## Hasil Praktikum
+
 ### Bilangan Prima
 ![bilangan prima](./screenshots/prima.png)
 

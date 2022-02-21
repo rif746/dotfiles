@@ -1,6 +1,7 @@
 # Version Control and Branch Management
 materi kedua berisi tentang penggunaan git dengan remote repository github. dimulai dari pembuatan repository, push, pull, stash, merge, branching, dan conflict.
 
+## Hasil Praktikum
 
 ### Membuat 3 Branch
 ![branch](./screenshots/branch.png)
