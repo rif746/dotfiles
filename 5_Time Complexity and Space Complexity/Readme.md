@@ -3,17 +3,17 @@ materi kelima adalah Time Complexity and Space Complexity, dimana kita belajar t
 
 ## Hasil Praktikum
 
-### Bilangan Prima
+### Bilangan Prima ([kode](./praktikum/prima/prima.go))
 ![bilangan prima](./screenshots/prima.png)
 
-### Exponentiation
+### Exponentiation ([kode](./praktikum/eksponen/eksponen.go))
 ![exponentiation](./screenshots/exponen.png)
 
-### Array Merge
+### Array Merge ([kode](./praktikum/array_merge/array_merge.go))
 ![array merge](./screenshots/array-merge.png)
 
-### Pair Sum
+### Pair Sum ([kode](./praktikum/pair_sum/pair_sum.go))
 ![pair sum](./screenshots/pair-sum.png)
 
-### Muncul Sekali
+### Muncul Sekali ([kode](./praktikum/muncul_sekali/muncul_sekali.go))
 ![muncul sekali](./screenshots/muncul-sekali.png)

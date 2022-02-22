@@ -3,26 +3,26 @@ materi keempat adalah Basic Programming, dimana kita belajar tentang dasar pemro
 
 ## Hasil Praktikum
 
-### Bilangan Prima
+### Bilangan Prima ([kode](./praktikum/prima/prima.go))
 ![bilangan prima](./screenshots/prima.png)
 
-### Grade
+### Grade ([kode](./praktikum/grade/grade.go))
 ![grade](./screenshots/grade.png)
 
-### Luas Tabung
+### Luas Tabung ([kode](./praktikum/luas_tabung/luas_tabung.go))
 ![luas tabung](./screenshots/luas-tabung.png)
 
-### Faktorial
+### Faktorial ([kode](./praktikum/faktorial/faktorial.go))
 ![faktorial](./screenshots/faktorial.png)
 
-### Palindrome
+### Palindrome ([kode](./praktikum/palindrome/palindrome.go))
 ![palindrome](./screenshots/palindrome.png)
 
-### Exponentiation
+### Exponentiation ([kode](./praktikum/eksponen/eksponen.go))
 ![exponentiation](./screenshots/exponen.png)
 
-### Asterisk Play
+### Asterisk Play ([kode](./praktikum/asterisk/asterisk.go))
 ![asterisk play](./screenshots/asterisk.png)
 
-### Tabel Perkalian
+### Tabel Perkalian ([kode](./praktikum/tabel_perkalian/tabel_perkalian.go))
 ![tabel perkalian](./screenshots/tabel-perkalian.png)
