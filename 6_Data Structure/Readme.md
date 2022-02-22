@@ -1,2 +1,19 @@
-# Structure Data
-materi keenam adalah Data Structure, dimana kita belajar penggunaan Array, Slice, Map, dan Function.
+# Data Structure
+materi keenam adalah Data Structure, dimana kita belajar tentang bagaimana memilih algoritma yang tepat untuk melakukan suatu proses dengan cepat dan efisien.
+
+## Hasil Praktikum
+
+### Bilangan Prima
+![bilangan prima](./screenshots/prima.png)
+
+### Exponentiation
+![exponentiation](./screenshots/exponen.png)
+
+### Array Merge
+![array merge](./screenshots/array-merge.png)
+
+### Pair Sum
+![pair sum](./screenshots/pair-sum.png)
+
+### Muncul Sekali
+![muncul sekali](./screenshots/muncul-sekali.png)
