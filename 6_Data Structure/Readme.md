@@ -3,12 +3,6 @@ materi keenam adalah Data Structure, dimana kita belajar tentang bagaimana memil
 
 ## Hasil Praktikum
 
-### Bilangan Prima ([kode](./praktikum/prima/prima.go))
-![bilangan prima](./screenshots/prima.png)
-
-### Exponentiation ([kode](./praktikum/eksponen/eksponen.go))
-![exponentiation](./screenshots/exponen.png)
-
 ### Array Merge ([kode](./praktikum/array_merge/array_merge.go))
 ![array merge](./screenshots/array-merge.png)
 

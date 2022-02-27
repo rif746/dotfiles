@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
 
 func merge(arr1, arr2 []string) []string {
 	var arr []string = append(arr1, arr2...)
@@ -21,7 +18,6 @@ func merge(arr1, arr2 []string) []string {
 }
 
 func main() {
-	start := time.Now()
 	fmt.Println("Array Merge")
 
 	arr1 := []string{"kazuya", "rikka", "hazama"}
@@ -29,6 +25,4 @@ func main() {
 	fmt.Println("Array 1 : ", arr1)
 	fmt.Println("Array 2 : ", arr2)
 	fmt.Println("Merged Array : ", merge(arr1, arr2))
-	elpased := time.Since(start)
-	fmt.Println("Process took ", elpased)
 }

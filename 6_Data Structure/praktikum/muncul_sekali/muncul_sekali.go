@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"strconv"
-	"time"
 )
 
 func merge(num string) []int {
@@ -48,11 +47,8 @@ func findAndDelete(arr []int, item int) []int {
 }
 
 func main() {
-	start := time.Now()
 	fmt.Println("Muncul Sekali")
 	arr := "12314527932"
 	fmt.Println("Array : ", arr)
 	fmt.Println("Muncul Sekali : ", merge(arr))
-	elpased := time.Since(start)
-	fmt.Println("Process took ", elpased)
 }

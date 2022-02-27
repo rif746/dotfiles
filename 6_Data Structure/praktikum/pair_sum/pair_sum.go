@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
 
 func pair_sum(arr []int, target int) []int {
 	left := 0
@@ -24,7 +21,6 @@ func pair_sum(arr []int, target int) []int {
 }
 
 func main() {
-	start := time.Now()
 	fmt.Println("Pair Sum")
 	
 	arr := []int{2, 5, 9, 11}
@@ -34,7 +30,4 @@ func main() {
 
 	pair := pair_sum(arr, target)
 	fmt.Println("Pair Sum : ", pair)
-
-	elpased := time.Since(start)
-	fmt.Println("Process took ", elpased)
 }

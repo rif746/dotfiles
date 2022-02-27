@@ -6,11 +6,14 @@ import (
 )
 
 func pangkat(x, y int) int {
-	if y > 1 {
-		return (x*(pangkat(x, y-1)))
-	} else {
-		return x
+	res := 1
+	for i := y; i > 0; i /= 2 {
+		if (i % 2 == 1) {
+			res = res * x
+		}
+		x *= x
 	}
+	return res
 }
 
 func main() {
