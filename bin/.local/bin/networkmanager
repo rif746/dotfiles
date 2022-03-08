@@ -145,6 +145,7 @@ def password(ssid):
     rofi.theme_str = "listview { lines: 4; }"
     rofi.theme_str += "element-text{horizontal-align:0;}"
     rofi = rofi()
+    print(rofi.selected)
     call(['nmcli', 'device', 'wifi', 'connect', ssid,
          'password', rofi.selected])
 

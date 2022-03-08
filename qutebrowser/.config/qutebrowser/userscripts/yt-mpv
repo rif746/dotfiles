@@ -4,10 +4,9 @@ from pyrof.rofi import Rofi
 import os
 
 menu = {
-    "360p": "-f 134",
-    "480p": "-f 135",
-    "720p": "-f 22",
-    "Sound Only": "-x --audio-format mp3"
+    "360p": "360",
+    "480p": "480",
+    "720p": "720",
 }
 
 rofi = Rofi()
@@ -16,7 +15,10 @@ rofi.font = 'FiraCode Nerd Font 14'
 rofi.dmenu = True
 rofi.theme_str = "listview { lines: 3; } window { width: 250px; }"
 rofi.theme_str += "inputbar { children: [prompt]; }"
-rofi.prompt = 'YouTube Downloader'
+rofi.prompt = 'Play with MPV'
 rofi = rofi(menu)
-os.system(f"""kitty -e yt-dlp {os.getenv('QUTE_URL')} {rofi.value} -o \\
-        '/mnt/Data/Video/Download/%(title)s.%(ext)s'""")
+
+fmt = "fsd/std/bestvideo[ext=mp4][height<=?"+rofi.value+"]+"
+fmt += "bestaudio/[height<=?"+rofi.value+"]/bestvideo[ext=mp4]+bestaudio/best"
+
+os.system("mpv --no-config --ytdl-format=" + fmt + " " + os.getenv('QUTEURL'))

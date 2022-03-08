@@ -53,6 +53,7 @@ def settings(c):
 
 def keybinding(c):
     c.bind('<Alt-y>', 'hint links userscript ytdl')
+    c.bind('<Alt-v>', 'hint links userscript yt-mpv')
 
 
 keybinding(config)

@@ -32,7 +32,6 @@ mainbox {
 window {
 		width: 450px;
 		padding: 10px;
-		border-radius: 10px;
 		background-color: var(background);
 }
 inputbar {

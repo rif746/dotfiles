@@ -6,6 +6,8 @@ HideBar() {
         xdo hide $ID
     elif pgrep polybar; then
       polybar-msg cmd hide
+		elif pgrep eww; then
+			$HOME/.local/bin/eww close bar
     fi
 
 }
@@ -19,6 +21,8 @@ ShowBar() {
         for i in $ID; do
           echo cmd:show >> /tmp/polybar_mqueue.$i
         done
+		elif pgrep eww; then
+			$HOME/.local/bin/eww open bar
     fi
 }
 
