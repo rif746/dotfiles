@@ -2,11 +2,19 @@ package main
 
 import "fmt"
 
+var memory map[int]int = make(map[int]int)
+
 func fibonacci(n int) int {
-	if n == 0 || n == 1 {
+	if check, value := memory[n]; value {
+		return check
+	}
+
+	if n <= 1 {
+		memory[n] = n
 		return n
 	} else {
-		return fibonacci(n-2)+fibonacci(n-1)
+		memory[n] = fibonacci(n-2)+fibonacci(n-1)
+		return memory[n]
 	}
 }
 
