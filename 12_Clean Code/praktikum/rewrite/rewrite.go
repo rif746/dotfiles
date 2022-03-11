@@ -7,26 +7,26 @@ type Kendaraan struct {
 	kecepatan int
 }
 
-// Struct Mobil extends Kendaraan
-type Mobil struct {
-	Kendaraan
+type Mobil interface {
+	TambahKecepatan()
+	Jalan()
 }
 
-func (k *Mobil) TambahKecepatan(speed int) {
+func (k *Kendaraan) TambahKecepatan(speed int) {
 	k.kecepatan += speed
 }
 
-func (k *Mobil) Jalan() {
+func (k *Kendaraan) Jalan() {
 	k.TambahKecepatan(10)
 }
 
 func main() {
 	fmt.Println("Rewrite")
-	var mobilNgebut Mobil
+	var mobilNgebut Kendaraan
 	mobilNgebut.Jalan()
 	mobilNgebut.Jalan()
 	mobilNgebut.Jalan()
 
-	var mobilLambat Mobil
+	var mobilLambat Kendaraan
 	mobilLambat.Jalan()
 }
