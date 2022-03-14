@@ -2,31 +2,34 @@ package main
 
 import "fmt"
 
-type Kendaraan struct {
+type Kendaraan interface {
+	TambahKecepatan(speed int)
+	Jalan()
+}
+
+type Mobil struct {
+	Kendaraan
 	roda int
 	kecepatan int
 }
 
-type Mobil interface {
-	TambahKecepatan()
-	Jalan()
-}
-
-func (k *Kendaraan) TambahKecepatan(speed int) {
+func (k *Mobil) TambahKecepatan(speed int) {
 	k.kecepatan += speed
 }
 
-func (k *Kendaraan) Jalan() {
+func (k *Mobil) Jalan() {
 	k.TambahKecepatan(10)
 }
 
 func main() {
 	fmt.Println("Rewrite")
-	var mobilNgebut Kendaraan
+	var mobilNgebut Mobil
 	mobilNgebut.Jalan()
 	mobilNgebut.Jalan()
 	mobilNgebut.Jalan()
+	fmt.Println(mobilNgebut.kecepatan)
 
-	var mobilLambat Kendaraan
+	var mobilLambat Mobil
 	mobilLambat.Jalan()
+	fmt.Println(mobilLambat.kecepatan)
 }
