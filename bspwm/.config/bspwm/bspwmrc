@@ -1,4 +1,4 @@
-#!/bin/sh
+ #!/bin/sh
 pkill picom
 pkill sxhkd
 pkill mpd
@@ -8,8 +8,8 @@ pkill cleanfullscreen
 dex -a &
 sxhkd &
 feh --bg-fill ~/.config/.wallpaper.png
-picom -b
 xfce4-power-manager&
+picom -b
 dunst&
 mpd&
 
