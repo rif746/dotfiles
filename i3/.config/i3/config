@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # Font for window title
-font pango:monospace 8
+font pango:monospace 10
 
 # set gaps
 gaps outer 5
@@ -15,8 +15,8 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Autostart
-exec --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id dunst
+exec --no-startup-id mpd
 exec --no-startup-id xinput set-prop 'ETPS/2 Elantech Touchpad' 'libinput Tapping Enabled' 1
 exec --no-startup-id feh ~/.config/.wallpaper.png --bg-fill
 exec --no-startup-id picom
@@ -33,9 +33,11 @@ floating_modifier $mod
 #####################
 #    KEYBINDING     #
 #####################
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+q kill
-bindsym $mod+d exec --no-startup-id ~/.local/bin/apps
+bindsym $mod+space exec --no-startup-id ~/.local/bin/apps
+bindsym $mod+m exec --no-startup-id ~/.local/bin/mpd-player
+bindsym $mod+n exec --no-startup-id ~/.local/bin/networkmanager
 
 # focus window
 bindsym $mod+h focus left
@@ -48,6 +50,19 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+# Home, End, PageUp, PageDown
+bindsym Control+Mod1+Left exec --no-startup-id xdotool keyup Left key --clearmodifiers Home
+bindsym Control+Mod1+h exec --no-startup-id xdotool keyup h key --clearmodifiers Home
+bindsym Control+Mod1+Right exec --no-startup-id xdotool keyup Right key --clearmodifiers End
+bindsym Control+Mod1+l exec --no-startup-id xdotool keyup l key --clearmodifiers End
+bindsym Control+Mod1+Up exec --no-startup-id xdotool keyup Up key --clearmodifiers Page_Up
+bindsym Control+Mod1+k exec --no-startup-id xdotool keyup k key --clearmodifiers Page_Up
+bindsym Control+Mod1+Down exec --no-startup-id xdotool keyup Down key --clearmodifiers Page_Down
+bindsym Control+Mod1+j exec --no-startup-id xdotool keyup j key --clearmodifiers Page_Down
+
+# Screenshot
+bindsym Print exec --no-startup-id ~/.local/bin/screenshot
 
 # Toggle Fullscreen
 bindsym $mod+f fullscreen toggle
@@ -132,3 +147,24 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+bar {
+	position top
+	colors {
+    background #282a36
+    statusline #ff79c6 
+    separator #6272a4
+
+    focused_workspace  #bd93f3 #bd93f9 #282a36
+    active_workspace   #44475a #44475a #282a36
+    inactive_workspace #44475a #44475a #f2f2f2
+    urgent_workspace   #ff5555 #ff5555 #f2f2f2
+  }
+	status_command i3status -c ~/.config/i3status/i3status.conf
+}
+
+# Colors of border, background, text, indicator, child_border
+client.focused 							#bd93f9 #bd93f9 #2f2f2f #bd93f9 #bd93f9
+client.focused_inactive 		#282a36 #282a36 #2f2f2f #bd93f9 #282a36
+
+# Window Border
+for_window [class="^.*"] border pixel 2
