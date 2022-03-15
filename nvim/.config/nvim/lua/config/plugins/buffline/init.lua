@@ -1,4 +1,6 @@
-require('bufferline').setup {
+local setup = require('utils').plugins
+
+setup('bufferline', {
   options = {
 		offsets = {
 			{
@@ -58,4 +60,4 @@ require('bufferline').setup {
     always_show_bufferline = true,
     sort_by = 'id'
   }
-}
+})

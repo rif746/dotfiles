@@ -1,7 +1,9 @@
-require'lualine'.setup {
+local setup = require('utils').plugins
+
+setup('lualine', {
   options = {
     icons_enabled = true,
-    theme = 'nord',
+    theme = 'dracula-nvim',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
@@ -26,4 +28,4 @@ require'lualine'.setup {
   },
   tabline = {},
   extensions = {}
-}
+})

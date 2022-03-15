@@ -1,8 +1,4 @@
-local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true, silent = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+local map = require('utils').map
 
 map('', '<A-f>', ':NvimTreeToggle<CR>', {silent=true, noremap=false})
 map('', '<A-r>', ':NvimTreeRefresh<CR>', {silent=true, noremap=false})
@@ -19,6 +15,9 @@ map('n', 'q', ':bdelete<CR>')
 map('n', '<A-q>', ':qa<CR>')
 map('n', '<S-h>', ':bprev<CR>')
 map('n', '<S-l>', ':bnext<CR>')
+
+
+map('n', '<S-t>', ':split | resize 20 | term<CR>')
 
 -- Save
 map('n', 's', ':write<CR>')
@@ -41,16 +40,13 @@ map('n', '<A-j>', '<C-w>j')
 map('n', '<A-/>', ':CommentToggle<CR>')
 map('v', '<A-/>', ':CommentToggle<CR>')
 
--- LSP Saga
-map("n", "gr", "<cmd>Lspsaga rename<cr>", {silent = true, noremap = true})
-map("n", "ga", "<cmd>Lspsaga code_action<cr>", {silent = true, noremap = true})
-map("x", "ga", ":<c-u>Lspsaga range_code_action<cr>", {silent = true, noremap = true})
-map("n", "gK",  "<cmd>Lspsaga hover_doc<cr>", {silent = true, noremap = true})
-map("n", "go", "<cmd>Lspsaga show_line_diagnostics<cr>", {silent = true, noremap = true})
-map("n", "gdn", "<cmd>Lspsaga diagnostic_jump_next<cr>", {silent = true, noremap = true})
-map("n", "gdb", "<cmd>Lspsaga diagnostic_jump_prev<cr>", {silent = true, noremap = true})
-map("n", "<C-k>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>")
-map("n", "<C-j>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")
-
 -- Rest Nvim
 map('n', 're', "<cmd>lua require('rest-nvim').run()<cr>", { silent = true, noremap = true })
+
+-- Telescope
+map('n', 'ff', ":Telescope find_files<cr>")
+map('n', 'fg', ":Telescope live_grep<cr>")
+map('n', 'ft', ":Telescope help_tags<cr>")
+map('n', 'fm', ":Telescope media_files<cr>")
+map('n', 'fa', ":Telescope lsp_code_action<cr>")
+map('n', 'fa', ":Telescope lsp_code_action<cr>")

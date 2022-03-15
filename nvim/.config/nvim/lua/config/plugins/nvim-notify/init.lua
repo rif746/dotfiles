@@ -1,4 +1,6 @@
-require("notify").setup({
+local setup = require('utils').plugins
+
+setup("notify", {
   -- Animation style (see below for details)
   stages = "slide",
 
@@ -21,6 +23,8 @@ require("notify").setup({
     TRACE = "✎",
   },
 })
+
+vim.notify = require("notify")
 
 vim.cmd [[
 highlight NotifyERRORBorder guifg=#8A1F1F
