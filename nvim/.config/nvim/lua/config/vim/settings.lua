@@ -5,6 +5,7 @@ local M = {
 	{'o', 'shiftwidth', indent},
 	{'o', 'background', 'dark'},
 	{'o', 'smartindent', true},
+	{'o', 'autoindent', true},
 	{'o', 'tabstop', indent},
 	{'o', 'completeopt', 'menu,menuone,noselect'},
 	{'o', 'termguicolors', true},
@@ -17,6 +18,9 @@ local M = {
 	{'o', 'splitbelow', true},
 	{'o', 'splitright', true},
 	{'o', 'mouse', 'a'},
+	{'o', 'scrolloff', 8},
+	{'o', 'sidescrolloff', 8},
+	{'o', 'scrollback', 8},
 	{'wo', 'number', true},
 	{'wo', 'relativenumber', true},
 	{'wo', 'cursorline', true},
@@ -27,11 +31,6 @@ local M = {
 	{'g', 'UltiSnipsJumpBackwardTrigger', '<Plug>(ultisnips_jump_backward)'},
 	{'g', 'UltiSnipsListSnippets', '<c-x><c-s>'},
 	{'g', 'UltiSnipsRemoveSelectModeMappings', '0'},
-
-	{'g', 'dracula_italic_comment', 1},
-	{'g', 'dracula_transparent_bg', 1},
-	{'g', 'dracula_show_end_of_buffer', 1}
-
 }
 
 return M

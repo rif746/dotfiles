@@ -1,5 +1,6 @@
 local M = {
-  { "savq/paq-nvim" },
+  -- { "savq/paq-nvim" },
+	{ "wbthomason/packer.nvim" },
   { "rktjmp/hotpot.nvim" },
 
   -- LSP
@@ -8,6 +9,10 @@ local M = {
   { "tami5/lspsaga.nvim" },
   { "nvim-treesitter/nvim-treesitter" },
   { "terrortylor/nvim-comment" },
+
+	-- Prettier
+	{ "jose-elias-alvarez/null-ls.nvim" },
+	{ "MunifTanjim/prettier.nvim" },
 
   -- Database Support
   { 'tpope/vim-dadbod' },
@@ -24,13 +29,18 @@ local M = {
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
 
+	-- Smooth Scrolling
+	{ 'karb94/neoscroll.nvim' },
+
   -- Snippets
   { "SirVer/ultisnips" },
   { "quangnguyen30192/cmp-nvim-ultisnips" },
 
+	-- Tagbar
+	{ "preservim/tagbar" },
+
   -- Theming
-  { "Mofiqul/dracula.nvim" },
-	{ 'Mofiqul/vscode.nvim' },
+	{ "marko-cerovac/material.nvim" },
   { "akinsho/bufferline.nvim" },
   { "rcarriga/nvim-notify" },
   { 'nvim-lualine/lualine.nvim' },

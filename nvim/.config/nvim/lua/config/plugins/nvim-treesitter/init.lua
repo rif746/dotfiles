@@ -4,6 +4,9 @@ setup('nvim-treesitter.configs', {
 	highlight = {
 		enable = true
 	},
-	ensure_installed = { "http", "json", "lua", "go", "gomod" },
+	indent = {
+		enable = true
+	},
+	ensure_installed = { "http", "json", "lua", "go", "gomod", "php" },
 	sync_install = true
 })

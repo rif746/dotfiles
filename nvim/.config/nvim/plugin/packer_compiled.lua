@@ -144,6 +144,11 @@ _G.packer_plugins = {
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
   },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -193,6 +198,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  ["prettier.nvim"] = {
+    loaded = true,
+    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/prettier.nvim",
+    url = "https://github.com/MunifTanjim/prettier.nvim"
   },
   ["rest.nvim"] = {
     loaded = true,

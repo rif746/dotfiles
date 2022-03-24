@@ -3,7 +3,7 @@ local setup = require('utils').plugins
 setup('lualine', {
   options = {
     icons_enabled = true,
-    theme = 'dracula-nvim',
+		theme = 'material-nvim',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},

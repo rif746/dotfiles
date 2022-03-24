@@ -1,4 +1,5 @@
 local setup = require('utils').plugins
+require('telescope').load_extension('media_files')
 
 setup('telescope', {
 	pickers = {

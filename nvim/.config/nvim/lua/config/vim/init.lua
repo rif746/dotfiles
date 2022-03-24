@@ -16,7 +16,6 @@ autocmd('BufEnter', 'NvimTree', 'setlocal statusline=%!DisableST()')
 autocmd('BufEnter', 'NvimTree', 'GitBlameDisable')
 autocmd('BufLeave', 'NvimTree', 'GitBlameEnable')
 
-cmd 'colorscheme dracula'
 autocmd('VimEnter', '*', '!xmodmap -e "clear lock" -e "keycode 0x42 = Escape"')
 autocmd('VimLeave', '*', '!xmodmap -e "clear lock" -e "keycode 0x42 = Caps_Lock" ')
 

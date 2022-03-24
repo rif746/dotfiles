@@ -10,12 +10,17 @@ map('i', 'cv', '<ESC>"+p')
 map('v', 'cv', '"+p')
 map('n', 'cv', '"+p')
 
+-- Center Cursor
+map('n', 'j', 'jzz')
+map('n', 'k', 'kzz')
+
 -- Buffer
 map('n', 'q', ':bdelete<CR>')
 map('n', '<A-q>', ':qa<CR>')
 map('n', '<S-h>', ':bprev<CR>')
 map('n', '<S-l>', ':bnext<CR>')
 
+map('n', '<F8>', ':TagbarToggle<CR>')
 
 map('n', '<S-t>', ':split | resize 20 | term<CR>')
 
