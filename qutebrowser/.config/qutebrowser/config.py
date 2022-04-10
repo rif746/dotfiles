@@ -15,8 +15,26 @@ def settings(c):
     # Content
     c.content.javascript.enabled = True
     c.content.javascript.can_access_clipboard = True
+    c.content.javascript.prompt = False
     c.content.pdfjs = False
+    c.content.notifications.enabled = False
     c.content.blocking.method = 'both'
+    c.content.blocking.adblock.lists = [
+        "https://easylist.to/easylist/easylist.txt",
+        "https://easylist.to/easylist/easyprivacy.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2021.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/legacy.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt",
+        "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-social.txt"
+    ]
+    c.content.blocking.hosts.lists = [
+        "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
+        "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext&_=223428"
+    ]
 
     # Colors Theme
     c.colors.webpage.preferred_color_scheme = 'dark'

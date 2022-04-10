@@ -13,33 +13,21 @@ $ stow bspwm
 ```
 
 ## Install Dependency
-
-##### Pyrof
-```bash
-$ pip install pyrof
-```
-credit by [nesstero](https://gitlab.com/nesstero/pyrof)
-
-##### Python MPD
-```bash
-$ pip install python-mpd2
-```
-credit by [Mic92](https://github.com/Mic92/python-mpd2)
-
 ##### XClip
 ```bash
 $ sudo pacman -S xclip
 ```
+
 ## Details
 
 |	Item							 | Value																					|
 |--------------------|------------------------------------------------|
 | OS                 | Arch Linux																			|
 | Shell							 | ZSH																						|
-| Color Schemes      | Dracula																				|
-| Icon               | Tela																						|
+| Color Schemes      | Material Ocean																	|
+| Icon               | Material Ocean																	|
 | Notification Daemon| Dunst																					|
-| GTK Theme          | Dracula																				|
+| GTK Theme          | Material Ocean GTK															|
 | File Manager       | PCManFM, [LF](https://github.com/x/lf)					|
 | Panel              | Polybar																				|
 | Panel Font				 | FiraCode Nerd Font															|
@@ -49,11 +37,10 @@ $ sudo pacman -S xclip
 | Language Server		 | sumneko-lua, python-lsp-server, clang,				  |
 |										 | vscode-json-languageserver, intelephense,   		|
 |										 | vscode-html-languageserver,						    		|
-|										 | vscode-css-languageserver, 						    		|
+|										 | vscode-css-languageserver, gopls				    		|
 | Menu							 | rofi																						|
 | Music Player       | mpd, mpc, ncmpcpp	 														|
 | Video Player       | mpv																						|
-| Screenshot         | Flameshot																			|
+| Screenshot         | Maim																						|
 | Screenrecorder		 | ffmpeg																					|
 | Extra							 | xdotool, perl-image-exif-tool, yt-dlp					|
-| Python Module			 | python-pyrof, python-mpd2											|

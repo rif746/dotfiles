@@ -1,16 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/sh
 
-from pyrof.rofi import Rofi
+ICON="Material-Ocean"
+THEMESTR="listview{lines:4;columns: 3;}"
 
-
-rofi = Rofi()
-rofi.base_command = ['rofi', '-no-default-config']
-rofi.dmenu = False
-rofi.show = 'window'
-rofi.show_icons = True
-rofi.icon_theme = 'dracula-icons'
-rofi.font = 'FiraCode Nerd Font 11'
-rofi.theme_str = " listview{lines:2;}"
-rofi.theme_str += "element{orientation: vertical;}"
-rofi.theme_str += "element-icon{size: 128;horizontal-align: 0;}"
-rofi()
+rofi -show window -show-icons -no-default-config -icon-theme $ICON -theme-str "$THEMESTR"

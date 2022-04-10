@@ -1,24 +1,14 @@
-#!/usr/bin/python
+#!/usr/bin/sh
 
-from pyrof.rofi import Rofi
-import os
+MENU="360|480|720"
+THEMESTR="listview{lines:3;}"
+THEMESTR+="window{width:250px;}"
+THEMESTR+="inputbar{children:[prompt]}"
+PROMPT="Youtube Download"
 
-menu = {
-    "360p": "360",
-    "480p": "480",
-    "720p": "720",
-}
+ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMESTR" <<< $MENU)
 
-rofi = Rofi()
-rofi.base_command = ['rofi', '-no-default-config']
-rofi.font = 'FiraCode Nerd Font 14'
-rofi.dmenu = True
-rofi.theme_str = "listview { lines: 3; } window { width: 250px; }"
-rofi.theme_str += "inputbar { children: [prompt]; }"
-rofi.prompt = 'Play with MPV'
-rofi = rofi(menu)
+FMT="fsd/std/bestvideo[ext=mp4][height<=?$ROFI]+"
+FMT+="bestaudio/[height<=?$ROFI]/bestvideo[ext=mp4]+bestaudio/best"
 
-fmt = "fsd/std/bestvideo[ext=mp4][height<=?"+rofi.value+"]+"
-fmt += "bestaudio/[height<=?"+rofi.value+"]/bestvideo[ext=mp4]+bestaudio/best"
-
-os.system("mpv --no-config --ytdl-format=" + fmt + " " + os.getenv('QUTEURL'))
+mpv --no-config --ytdl-format=$FMT $QUTEURL

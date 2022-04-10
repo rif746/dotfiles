@@ -8,3 +8,4 @@ qutebrowser/.config/qutebrowser/autoconfig.yml
 qutebrowser/.config/qutebrowser/dracula/__pycache__
 zsh/.config/zsh/.zcompdump
 zsh/.config/zsh/zhistory
+nvim/.config/nvim/plugin

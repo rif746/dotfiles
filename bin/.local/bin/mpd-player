@@ -1,116 +1,38 @@
-#!/bin/python
+#!/bin/sh
 
-from pyrof.rofi import Rofi
-import subprocess as sub
-from mpd import MPDClient
+THEMESTR="listview{lines:1;columns: 7;}"
+THEMESTR+="element-text{horizontal-align:0.5;}"
+THEMESTR+="inputbar{children:[prompt];}"
 
+PROMPT=$(mpc status -f "%title%" | head -n 1)
+if [[ $(mpc status | grep playing) ]]; then
+	MENU=""
+elif [[ $(mpc status | grep paused) ]]; then
+  MENU=""
+else
+	PROMPT="Music Player Daemon"
+  MENU=""
+fi
+MENU+="||玲|怜|蘿|"
 
-client = MPDClient()
+playlist() {
+	THEMESTR="listview{lines:5;columns: 1;}"
+	PROMPT="Playlist"
+	MENU=$(mpc playlist -f "%position% %title%")
+	SEL=$(mpc status -f "%id%" | head -n 1)
+	SEL=$(expr $SEL - 1)
+	ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" \
+		-sep "\n" -theme-str "$THEMESTR" -selected-row $SEL <<< $MENU)
+	mpc play $(echo $ROFI | awk '{print $1}')
+}
 
-music_list = dict()
-playlist = dict()
-menu = dict()
-music_path = dict()
-try:
-    client.connect('localhost', '6600')
-except Exception:
-    sub.call(['notify-send', 'mpd not connected'])
-current_song = ''
+ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMESTR" <<< $MENU)
 
-
-def list_song(d=''):
-    song = client.listall(d)
-    directory = dict()
-    for sng in song:
-        path3 = []
-        if 'file' in sng:
-            path = sng['file'].split('/')
-            path2 = d.split('/')
-            for p in path:
-                if p in path2:
-                    del p
-                else:
-                    path3.append(p)
-            directory[f"{path3[0]}"] = sng
-    return set(directory)
-
-
-def scan_music(d=''):
-    music_list = list_song(d)
-    rofi = Rofi()
-    rofi.base_command = ['rofi', '-no-default-config']
-    rofi.font = 'FiraCode Nerd Font 14'
-    rofi.dmenu = True
-    rofi.theme_str = "listview { lines: 4; }"
-    rofi.prompt = 'Add Music to Playlist'
-    rofi = rofi(music_list)
-    music_path[rofi.selected] = rofi.selected
-    if 'mp3' not in rofi.selected:
-        path = '/'.join(music_path)
-        scan_music(path)
-    else:
-        path = '/'.join(music_path)
-        client.add(path)
-
-
-def lsplaylist():
-    num = 0
-    for music in client.playlistinfo():
-        if 'artist' in music:
-            m = str(num+1) + '. ' + music['artist'] + ' - ' + music['title']
-        else:
-            m = str(num+1) + '. ' + music['file'].split('/')[1]
-        music_list[m] = str(num)
-        num += 1
-
-
-def playlist():
-    lsplaylist()
-    rofi = Rofi()
-    rofi.base_command = ['rofi', '-no-default-config']
-    rofi.font = 'FiraCode Nerd Font 14'
-    rofi.dmenu = True
-    rofi.select = client.status()['songid'] or 0
-    rofi.theme_str = "listview { lines: 4; }"
-    rofi.prompt = 'Playlist'
-    rofi = rofi(music_list)
-    client.play(rofi.value)
-
-
-def generate_menu():
-    if client.status()['state'] == 'play':
-        menu[''] = client.pause
-    else:
-        menu[''] = client.play
-    menu[''] = client.stop
-    menu['玲'] = client.previous
-    menu['怜'] = client.next
-    menu['蘿'] = playlist
-    menu[''] = scan_music
-    menu[''] = 'ncmpcpp'
-
-
-def main():
-    generate_menu()
-    rofi = Rofi()
-    rofi.base_command = ['rofi', '-no-default-config']
-    rofi.font = 'FiraCode Nerd Font 14'
-    rofi.dmenu = True
-    rofi.theme_str = "listview {lines:1;columns:7;}"
-    rofi.theme_str += "element-text{horizontal-align:0.5;}"
-    rofi.theme_str += "inputbar {children:[prompt];}"
-    try:
-        song = client.currentsong()
-        currsong = f"{song['title']}"
-    except Exception:
-        currsong = 'Music Player Daemon'
-    rofi.prompt = " " + currsong
-    rofi = rofi(menu)
-    val = rofi.value
-    if val == 'ncmpcpp':
-        sub.call(['kitty', '-e', val])
-    else:
-        val()
-
-
-main()
+case $ROFI in
+	|) mpc toggle ;;
+	) mpc stop ;;
+	玲) mpc prev ;;
+	怜) mpc next ;;
+	蘿) playlist ;;
+	) kitty -e ncmpcpp ;;
+esac

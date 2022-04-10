@@ -9,6 +9,7 @@ local M = {
   { "tami5/lspsaga.nvim" },
   { "nvim-treesitter/nvim-treesitter" },
   { "terrortylor/nvim-comment" },
+	{ "folke/trouble.nvim" },
 
 	-- Prettier
 	{ "jose-elias-alvarez/null-ls.nvim" },
@@ -57,6 +58,8 @@ local M = {
   { "kyazdani42/nvim-web-devicons" },
   { "kyazdani42/nvim-tree.lua" },
 
+	{ "rking/ag.vim" },
+
   -- Matlab Support
   { "jvirtanen/vim-octave" },
 
@@ -76,6 +79,9 @@ local M = {
 
   -- Markdown Support
   {'iamcco/markdown-preview.nvim'},
+
+	-- Laravel
+	{ 'jwalton512/vim-blade' }
 }
 
 return M

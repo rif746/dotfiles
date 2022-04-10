@@ -1,60 +1,27 @@
-#!/usr/bin/python
+#!/bin/sh
 
-from pyrof.rofi import Rofi
-import datetime
-from os import system
+THEMESTR="listview{lines:1;columns: 2;}"
+THEMESTR+="inputbar{children:[prompt];}"
+PROMPT="Screen Recorder"
+VIDPATH="$HOME/Videos/$(date '+%d-%m-%Y_%H-%M-%S').mp4"
+CHECK_PROCESS=$(pgrep ffmpeg)
 
+if [ -z $CHECK_PROCESS ]; then
+	MENU="Record|Cancel"
+else
+	MENU="Stop Record|Cancel"
+fi
 
-filename = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
-record_stat = system("pgrep ffmpeg")
+ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMESTR" <<< $MENU)
 
+if [ "$ROFI" == "Record" ]; then
+	notify-send "Recording"
 
-def start_record(with_webcam=False):
-    system("notify-send Recording")
-    if with_webcam:
-        system("""mpv av://v4l2:/dev/video0 --vf=hflip --title=webcam \
-                --profile=low-latency --untimed &""")
-    system(f"""ffmpeg -video_size 1366x768 -framerate 25 -f x11grab \
-            -i :0.0 -f alsa -ac 2 -i hw:0,0 -acodec mp3 -vcodec \
-            libx264 -preset ultrafast -threads 0 ~/Videos/{filename}.mp4 &""")
-
-
-def runner(run):
-    if run == 'Record':
-        start_record()
-    elif run == 'Stop Record':
-        system('pkill ffmpeg')
-        system('pkill mpv')
-        system('notify-send \'Recorded to ' + filename + '\'')
-    elif run == 'Record + Webcam':
-        start_record(with_webcam=True)
-
-
-def generate_menu():
-    if record_stat != 0:
-        menu = {
-            "Record": "",
-            "Record + Webcam": "",
-            "Cancel": ""
-        }
-    else:
-        menu = {
-            'Stop Record': "",
-            'Cancel': ""
-        }
-    return menu
-
-
-def main():
-    rofi = Rofi()
-    rofi.base_command = ['rofi', '-no-default-config']
-    rofi.font = 'FiraCode Nerd Font 14'
-    rofi.dmenu = True
-    rofi.theme_str = "listview {lines: 1;columns: 2;}"
-    rofi.theme_str += "inputbar {children: [prompt];}"
-    rofi.prompt = 'Screen Record'
-    rofi = rofi(generate_menu())
-    runner(rofi.selected)
-
-
-main()
+	ffmpeg -video_size 1366x768 -framerate 25 -f x11grab \
+					-i :0.0 -f alsa -ac 2 -i hw:0,0 -acodec mp3 -vcodec \
+					libx264 -preset ultrafast -threads 0 $VIDPATH &
+elif [ "$ROFI" == "Stop Record" ]; then
+	killall ffmpeg
+else
+	exit
+fi

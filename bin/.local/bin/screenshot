@@ -1,46 +1,24 @@
-#!/usr/bin/python
+#!/bin/sh
 
-from pyrof.rofi import Rofi
-from PIL import Image, ImageShow
-import os
-from datetime import datetime
-from os import system as sys
+THEMESTR="listview{lines:2;columns: 3;}"
+THEMESTR+="inputbar{children:[prompt];}"
+MENU="Full Screen|Rectangle|Region|Cancel"
+PROMPT="Screenshot"
+IMGPATH="$HOME/Pictures/$(date '+%d-%m-%Y_%H-%M-%S').png"
 
-filename = datetime.now().strftime('%Y-%m-%d-%H%M%S')
-dirs = os.getenv('HOME') + "/Pictures/"
-path = dirs + filename
+ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMESTR" <<< $MENU)
 
+# if [[ -n $ROFI ]]; then
+# 	exit
+# fi
 
-def shadow():
-    pass
-
-
-def read():
-    img = Image.open(path + '.png')
-    Image.new(img.mode, ())
-    ImageShow.show(img)
-
-
-def generate_menu():
-    return {
-        "Full Screen": f"maim -u {path}.png",
-        "Rectangle": f"maim -us {path}.png",
-        "Region": f"maim -ui $(xdotool selectwindow) {path}.png",
-        "Cancel": ""
-    }
-
-
-def main():
-    rofi = Rofi()
-    rofi.base_command = ['rofi', '-no-default-config']
-    rofi.font = 'FiraCode Nerd Font 14'
-    rofi.prompt = "Screenshot"
-    rofi.theme_str = "listview{lines: 2; columns: 2;}"
-    rofi.theme_str += "inputbar {children: [prompt];}"
-    rofi = rofi(generate_menu())
-    sys('sleep 1')
-    sys(rofi.value)
-    read()
-
-
-main()
+case $ROFI in
+    "Full Screen")
+        maim -u $IMGPATH ;;
+    "Rectangle")
+        maim -us $IMGPATH ;;
+    "Region")
+        maim -ui $(xdotool selectwindow) $IMGPATH ;;
+    "Cancel")
+        exit ;;
+esac

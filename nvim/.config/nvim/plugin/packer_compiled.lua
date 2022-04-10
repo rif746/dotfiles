@@ -69,6 +69,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["ag.vim"] = {
+    loaded = true,
+    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/ag.vim",
+    url = "https://github.com/rking/ag.vim"
+  },
   ["auto-pairs"] = {
     loaded = true,
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/auto-pairs",
@@ -109,11 +114,6 @@ _G.packer_plugins = {
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/csv.vim",
     url = "https://github.com/chrisbra/csv.vim"
   },
-  ["dracula.nvim"] = {
-    loaded = true,
-    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/dracula.nvim",
-    url = "https://github.com/Mofiqul/dracula.nvim"
-  },
   ["flutter-tools.nvim"] = {
     loaded = true,
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/flutter-tools.nvim",
@@ -143,6 +143,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
+  ["material.nvim"] = {
+    loaded = true,
+    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/material.nvim",
+    url = "https://github.com/marko-cerovac/material.nvim"
+  },
+  ["neoscroll.nvim"] = {
+    loaded = true,
+    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
+    url = "https://github.com/karb94/neoscroll.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -184,10 +194,10 @@ _G.packer_plugins = {
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
-  ["paq-nvim"] = {
+  ["packer.nvim"] = {
     loaded = true,
-    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/paq-nvim",
-    url = "https://github.com/savq/paq-nvim"
+    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -209,6 +219,11 @@ _G.packer_plugins = {
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/rest.nvim",
     url = "https://github.com/NTBBloodbath/rest.nvim"
   },
+  tagbar = {
+    loaded = true,
+    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/tagbar",
+    url = "https://github.com/preservim/tagbar"
+  },
   ["telescope-media-files.nvim"] = {
     loaded = true,
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
@@ -219,10 +234,20 @@ _G.packer_plugins = {
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
+  },
   ultisnips = {
     loaded = true,
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/ultisnips",
     url = "https://github.com/SirVer/ultisnips"
+  },
+  ["vim-blade"] = {
+    loaded = true,
+    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/vim-blade",
+    url = "https://github.com/jwalton512/vim-blade"
   },
   ["vim-closetag"] = {
     loaded = true,
@@ -253,11 +278,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/vim-signify",
     url = "https://github.com/mhinz/vim-signify"
-  },
-  ["vscode.nvim"] = {
-    loaded = true,
-    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/vscode.nvim",
-    url = "https://github.com/Mofiqul/vscode.nvim"
   },
   ["which-key.nvim"] = {
     loaded = true,

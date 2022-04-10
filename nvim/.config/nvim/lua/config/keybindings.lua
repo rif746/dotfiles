@@ -45,9 +45,6 @@ map('n', '<A-j>', '<C-w>j')
 map('n', '<A-/>', ':CommentToggle<CR>')
 map('v', '<A-/>', ':CommentToggle<CR>')
 
--- Rest Nvim
-map('n', 're', "<cmd>lua require('rest-nvim').run()<cr>", { silent = true, noremap = true })
-
 -- Telescope
 map('n', 'ff', ":Telescope find_files<cr>")
 map('n', 'fg', ":Telescope live_grep<cr>")

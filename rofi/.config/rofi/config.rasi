@@ -1,7 +1,10 @@
 * {
-		background: rgba(40, 42, 54, 100%);
-		selected-bg: rgba(68, 71, 90, 100%);
-		fg: rgba(242, 248, 242, 100%);
+  background: #0f111a;
+  fg: #f1f1f1;
+  selected-bg: #ff4151;
+}
+configuration {
+	font: "JetBrains Mono Nerd Font 11";
 }
 listview {
 		expand: true;

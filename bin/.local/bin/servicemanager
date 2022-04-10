@@ -1,46 +1,46 @@
-#!/usr/bin/python
+#!/bin/sh
 
-from pyrof.rofi import Rofi
-import subprocess as sub
+THEMESTR="listview{lines:4;}"
+MENU=$(systemctl list-unit-files --type=service --state=active,disabled,enabled \
+				| grep service | awk '{print $1}')
+PROMPT="Service Manager"
 
+run() {
+	SERVICE=$2
+	ACTION=$(echo $1 | tr '[:upper:]' '[:lower:]')
+	sudo -A systemctl $ACTION $SERVICE
+	notify-send "$SERVICE $ACTION"
+}
 
-service = dict()
+servicemenu() {
+	THEMESTR="listview{lines:2;}"
+	THEMESTR+="inputbar{children:[prompt];}"
+	ISACTIVE=$(systemctl is-active $1)
+	SRV="$1 ($ISACTIVE)"
+	if [ "$ISACTIVE" == "inactive" ]; then
+		MENU="Start"
+	else
+		MENU="Stop"
+	fi
+	ISENABLE=$(systemctl is-enabled $1)
+	if [ "$ISENABLE" == "enabled" ]; then
+		MENU+="|Disable"
+	else
+		MENU+="|Enable"
+	fi
+	ROFI=$(rofi -dmenu -no-default-config -p "$SRV" -sep "|" -theme-str "$THEMESTR" <<< $MENU)
 
+	if [ -z $ROFI ]; then
+		exit
+	fi
 
-def service_list():
-    ser = sub.getoutput("""systemctl --type=service \
-                         --state=dead,active | \
-                         awk '{print $1",,"$3}'""")
-    for s in ser.split('\n'):
-        if 'service' in s and 'systemd' not in s:
-            n = s.split(',,')
-            service[f"{n[0]} ({n[1]})"] = n[0]
+	run $ROFI $1
+}
 
+ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "\n" -theme-str "$THEMESTR" <<< $MENU)
 
-def check_status(ser):
-    msg = f"{ser} is "
-    out = sub.getoutput(f"systemctl status {ser}")
-    if 'inactive' in out:
-        msg += "inactive"
-    else:
-        msg += "active"
-    sub.call(['notify-send', msg])
+if [ -z $ROFI ]; then
+	exit
+fi
 
-
-def main():
-    service_list()
-    rofi = Rofi()
-    rofi.base_command = ['rofi', '-no-default-config']
-    rofi.font = 'FiraCode Nerd Font 14'
-    rofi.dmenu = True
-    rofi.theme_str = "listview { lines: 4; }"
-    rofi.prompt = 'Service'
-    rofi = rofi(service)
-    if 'inactive' in rofi.selected:
-        sub.call(['sudo', '-A', 'systemctl', 'start', rofi.value])
-    else:
-        sub.call(['sudo', '-A', 'systemctl', 'stop', rofi.value])
-    check_status(rofi.value)
-
-
-main()
+servicemenu $ROFI

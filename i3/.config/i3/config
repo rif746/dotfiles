@@ -19,9 +19,11 @@ exec --no-startup-id dunst
 exec --no-startup-id mpd
 exec --no-startup-id xinput set-prop 'ETPS/2 Elantech Touchpad' 'libinput Tapping Enabled' 1
 exec --no-startup-id feh ~/.config/.wallpaper.png --bg-fill
-exec --no-startup-id picom
+exec_always --no-startup-id picom
 exec --no-startup-id volumeicon
-exec_always --no-startup-id tint2
+exec --no-startup-id dex -a
+exec --no-startup-id tint2
+exec --no-startup-id powerkit
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -33,7 +35,9 @@ bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+q kill
 bindsym $mod+space exec --no-startup-id ~/.local/bin/apps
 bindsym $mod+m exec --no-startup-id ~/.local/bin/mpd-player
-bindsym $mod+n exec --no-startup-id ~/.local/bin/networkmanager
+bindsym $mod+n exec --no-startup-id ~/.local/bin/networkmanager-dmenu
+bindsym $mod+s exec --no-startup-id ~/.local/bin/servicemanager
+bindsym $mod+w exec --no-startup-id ~/.local/bin/window
 
 # focus window
 bindsym $mod+h focus left
@@ -64,7 +68,8 @@ bindsym Print exec --no-startup-id ~/.local/bin/screenshot
 bindsym $mod+f fullscreen toggle
 
 # Change Layout
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
+bindsym $mod+x layout splith
 
 # Toggle Floating
 bindsym $mod+Shift+space floating toggle
