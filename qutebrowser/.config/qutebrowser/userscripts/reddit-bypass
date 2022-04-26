@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+
+URL=$(echo $QUTE_URL | sed 's/reddit.com/libredd.it/' | sed 's/www.//')
+echo "open -t $URL" > $QUTE_FIFO
