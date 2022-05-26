@@ -1,87 +1,93 @@
 local M = {
-  -- { "savq/paq-nvim" },
-	{ "wbthomason/packer.nvim" },
-  { "rktjmp/hotpot.nvim" },
+		-- { "savq/paq-nvim" },
+		{ "wbthomason/packer.nvim" },
+		{ "rktjmp/hotpot.nvim" },
 
-  -- LSP
-  { "neovim/nvim-lspconfig" },
-  { "onsails/lspkind-nvim" },
-  { "tami5/lspsaga.nvim" },
-  { "nvim-treesitter/nvim-treesitter" },
-  { "terrortylor/nvim-comment" },
-	{ "folke/trouble.nvim" },
+		-- LSP
+		{ "neovim/nvim-lspconfig" },
+		{ "onsails/lspkind-nvim" },
+		{ "tami5/lspsaga.nvim" },
+		{ "nvim-treesitter/nvim-treesitter" },
+		{ "terrortylor/nvim-comment" },
+		{ "folke/trouble.nvim" },
 
-	-- Prettier
-	{ "jose-elias-alvarez/null-ls.nvim" },
-	{ "MunifTanjim/prettier.nvim" },
+		-- File type
+		{ "nathom/filetype.nvim" },
 
-  -- Database Support
-  { 'tpope/vim-dadbod' },
-  { 'kristijanhusak/vim-dadbod-ui' },
-  { 'kristijanhusak/vim-dadbod-completion' },
+		-- Prettier
+		{ "jose-elias-alvarez/null-ls.nvim" },
+		{ "MunifTanjim/prettier.nvim" },
 
-  -- Flutter Support
-  { "akinsho/flutter-tools.nvim" },
+		-- Database Support
+		{ 'tpope/vim-dadbod' },
+		{ 'kristijanhusak/vim-dadbod-ui' },
+		{ 'kristijanhusak/vim-dadbod-completion' },
 
-  -- Completion
-  { "hrsh7th/nvim-cmp" },
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "hrsh7th/cmp-buffer" },
-  { "hrsh7th/cmp-path" },
-  { "hrsh7th/cmp-cmdline" },
+		-- Flutter Support
+		{ "akinsho/flutter-tools.nvim" },
 
-	-- Smooth Scrolling
-	{ 'karb94/neoscroll.nvim' },
+		-- Completion
+		{ "hrsh7th/nvim-cmp" },
+		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "hrsh7th/cmp-buffer" },
+		{ "hrsh7th/cmp-path" },
+		{ "hrsh7th/cmp-cmdline" },
 
-  -- Snippets
-  { "SirVer/ultisnips" },
-  { "quangnguyen30192/cmp-nvim-ultisnips" },
+		-- Smooth Scrolling
+		{ 'karb94/neoscroll.nvim' },
 
-	-- Tagbar
-	{ "preservim/tagbar" },
+		-- Snippets
+		{ "SirVer/ultisnips" },
+		{ "quangnguyen30192/cmp-nvim-ultisnips" },
 
-  -- Theming
-	{ "marko-cerovac/material.nvim" },
-  { "akinsho/bufferline.nvim" },
-  { "rcarriga/nvim-notify" },
-  { 'nvim-lualine/lualine.nvim' },
+		-- Tagbar
+		{ "preservim/tagbar" },
 
-  -- VCS sign
-  { 'mhinz/vim-signify' },
+		-- Theming
+		{ "marko-cerovac/material.nvim" },
+		{ "akinsho/bufferline.nvim" },
+		{ "rcarriga/nvim-notify" },
+		{ 'nvim-lualine/lualine.nvim' },
 
-  -- Telescope
-  { 'nvim-telescope/telescope.nvim' },
-  { 'nvim-lua/popup.nvim' },
-  { 'nvim-telescope/telescope-media-files.nvim' },
+		-- VCS sign
+		{ 'mhinz/vim-signify' },
 
-  -- File Manager
-  { "kyazdani42/nvim-web-devicons" },
-  { "kyazdani42/nvim-tree.lua" },
+		-- Telescope
+		{ 'nvim-telescope/telescope.nvim' },
+		{ 'nvim-lua/popup.nvim' },
+		{ 'nvim-telescope/telescope-media-files.nvim' },
 
-	{ "rking/ag.vim" },
+		-- File Manager
+		{ "kyazdani42/nvim-web-devicons" },
+		{ "kyazdani42/nvim-tree.lua" },
 
-  -- Matlab Support
-  { "jvirtanen/vim-octave" },
+		{ "rking/ag.vim" },
 
-  -- CSV Support
-  { "chrisbra/csv.vim" },
+		-- Matlab Support
+		{ "jvirtanen/vim-octave" },
 
-  -- pair
-  {'jiangmiao/auto-pairs'},
-  {'alvan/vim-closetag'},
+		-- CSV Support
+		{ "chrisbra/csv.vim" },
 
-  -- Shortcut Helper
-  {'folke/which-key.nvim'},
+		-- pair
+		{'jiangmiao/auto-pairs'},
+		{'alvan/vim-closetag'},
 
-  -- RestAPI
-  {"NTBBloodbath/rest.nvim"},
-  {"nvim-lua/plenary.nvim"},
+		-- Shortcut Helper
+		{'folke/which-key.nvim'},
 
-  -- Markdown Support
-  {'iamcco/markdown-preview.nvim'},
+		-- RestAPI
+		{"NTBBloodbath/rest.nvim"},
+		{"nvim-lua/plenary.nvim"},
 
-	-- Laravel
-	{ 'jwalton512/vim-blade' }
+		-- Markdown Support
+		{'iamcco/markdown-preview.nvim'},
+
+		-- Laravel
+		{ 'jwalton512/vim-blade' },
+
+		-- Pretty Diagnostic
+		{ "folke/trouble.nvim" }
 }
 
 return M

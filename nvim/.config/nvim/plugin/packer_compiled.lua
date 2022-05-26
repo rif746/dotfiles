@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/csv.vim",
     url = "https://github.com/chrisbra/csv.vim"
   },
+  ["filetype.nvim"] = {
+    loaded = true,
+    path = "/home/syarif/.local/share/nvim/site/pack/packer/start/filetype.nvim",
+    url = "https://github.com/nathom/filetype.nvim"
+  },
   ["flutter-tools.nvim"] = {
     loaded = true,
     path = "/home/syarif/.local/share/nvim/site/pack/packer/start/flutter-tools.nvim",

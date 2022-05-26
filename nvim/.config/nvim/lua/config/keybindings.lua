@@ -6,7 +6,6 @@ map('', '<A-F>', ':NvimTreeFindFile<CR>', {silent=true, noremap=false})
 
 -- Copy Pasta (xclip required)
 map('v', 'cc', '"+y')
-map('i', 'cv', '<ESC>"+p')
 map('v', 'cv', '"+p')
 map('n', 'cv', '"+p')
 
@@ -29,7 +28,7 @@ map('n', 's', ':write<CR>')
 
 -- Undo Redo
 map('n', 'u', ':undo<CR>')
-map('n', 'z', ':redo<CR>')
+map('n', 'z', '<cmd>redo<CR>')
 
 -- Better Indentation Key
 map('v', '<Tab>', '>', {noremap=false, silent=true})
@@ -52,3 +51,6 @@ map('n', 'ft', ":Telescope help_tags<cr>")
 map('n', 'fm', ":Telescope media_files<cr>")
 map('n', 'fa', ":Telescope lsp_code_action<cr>")
 map('n', 'fa', ":Telescope lsp_code_action<cr>")
+
+-- REST API Test
+map('n', '<A-R>', ":lua require('rest-nvim').run()<CR>")
