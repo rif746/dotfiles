@@ -13,7 +13,7 @@ ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMEST
 
 case $ROFI in
 	*Logout)
-		i3-msg exit	;;
+		pkill -KILL -u $USER ;;
 	*Suspend)
 		systemctl suspend ;;
 	*Restart)

@@ -131,6 +131,19 @@ cmd dragandropmove ${{
   clear
 }}
 
+cmd space2underscore ${{
+	IFS=$'\n'
+	for i in $fs; 
+	do 
+		FILE=$(basename "$i")    
+		if [[ $FILE == *" "* ]]; then
+			mv "$i" ${FILE// /_}; 
+		else
+			mv "$i" ${FILE//_/ }; 
+		fi
+	done
+}}
+
 cmd unarchive ${{
       clear
       if [ -z "$fs" ]; then
@@ -156,6 +169,10 @@ cmd unarchive ${{
              mkdir "$(pwd)/${FOLDER%.*}"
              tar -xf "$f" --directory="$(pwd)/${FOLDER%.*}" --verbose
              ;;
+					*.7z)
+             mkdir "$(pwd)/${FOLDER%.*}"
+						 7z x "$f"
+						 ;;
         esac
     else
         echo "Do you want to extract "
@@ -188,6 +205,9 @@ cmd unarchive ${{
                       mkdir "$(pwd)/${FOLDER%.*}"
                       tar -xf "$f" --directory="$(pwd)/${FOLDER%.*}" --verbose
                       ;;
+									*.7z)
+										 7z x "$f"
+										 ;;
                 esac
             done
         fi
@@ -254,6 +274,7 @@ map c
 map y
 map p
 map w
+map st
 
 # custom mapping
 map <enter> open
@@ -278,3 +299,4 @@ map xc dragandropcopy
 map xm dragandropmove
 map wp setwp
 map wl setLockScreen
+map stu space2underscore

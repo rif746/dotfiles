@@ -1,20 +1,18 @@
- #!/bin/sh
-pkill picom
-pkill sxhkd
-pkill mpd
-pkill dunst
-pkill cleanfullscreen
+#! /bin/sh
 
-dex -a &
-sxhkd &
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor -d I II III IV V VI
+
+pgrep -x dex > /dev/null || dex -a&
 feh --bg-fill ~/.config/.wallpaper.png
-xfce4-power-manager&
-picom -b
-dunst&
-mpd&
+pgrep -x powerkit > /dev/null || powerkit&
+pgrep -x picom > /dev/null || picom -b
+pgrep -x dunst > /dev/null || dunst&
+pgrep -x mpd > /dev/null || mpd&
 
 bspc monitor -d 1 2 3 4 5 6
-bspc rule -a zoom state=floating
+bspc config external_rules_command "$HOME/.config/bspwm/external_rules"
 
 xinput set-prop 'ETPS/2 Elantech Touchpad' 'libinput Tapping Enabled' 1
 
