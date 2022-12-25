@@ -4,7 +4,7 @@ THEMESTR="listview{lines:2;columns: 3;}"
 THEMESTR+="inputbar{children:[prompt];}"
 MENU="Full Screen|Rectangle|Region|Cancel"
 PROMPT="Screenshot"
-IMGPATH="$HOME/Pictures/$(date '+%d-%m-%Y_%H-%M-%S').png"
+IMGPATH="$HOME/Gambar/$(date '+%d-%m-%Y_%H-%M-%S').png"
 
 ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMESTR" <<< $MENU)
 

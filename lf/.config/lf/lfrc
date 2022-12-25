@@ -103,28 +103,28 @@ cmd move_paste ${{
 cmd dragandrop ${{
   clear
   IFS=$'\n'
-  dragon-drag-and-drop -a -x $fx
+  dragon-drop -a -x $fx
   clear
 }}
 
 cmd dragandropcopy ${{
   clear
-  file=$(dragon-drag-and-drop -t -x)
+  file=$(dragon-drop -t -x)
   IFS=$'\n'
+	echo $file
   for f in $file; do
-    file=$(echo $f | sed 's/file:\/\///' | sed 's/%20/ /')
+    file=$(echo "$f" | sed 's/file:\/\///' | sed -e 's/%20/ /g')
     cp "$file"  "$(pwd)/" &
     progress -m
   done
-  clear
 }}
 
 cmd dragandropmove ${{
   clear
-  files=$(dragon-drag-and-drop -t -x)
+  files=$(dragon-drop -t -x)
   IFS=$'\n'
   for f in $files; do
-    file=$(echo $f | sed 's/file:\/\///' | sed 's/%20/ /')
+    file=$(echo "$f" | sed 's/file:\/\///' | sed -e 's/%20/ /g')
     mv "$file"  "$(pwd)/" &
     progress -m
   done

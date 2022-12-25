@@ -10,7 +10,7 @@ case "$class" in
 		echo "state=tiled desktop=1 follow=on" ;;
 	Brave*|Firefox|firefox)
 		echo "state=tiled desktop=2 follow=on" ;;
-	Pcsx2)
+	Pcsx2|Steam)
 		echo "state=floating desktop=3 center=on"	;;
 	Telegram*)
 		echo "state=tiled desktop=5 follow=on" ;;

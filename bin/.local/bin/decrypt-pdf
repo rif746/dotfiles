@@ -1,0 +1,2 @@
+#!/bin/sh
+ls *.pdf | xargs -I '{}' qpdf --decrypt {} --replace-input --password="$1"
