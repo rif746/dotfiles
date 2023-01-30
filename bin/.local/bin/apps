@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-ICON="Material-Ocean"
+ICON="oomox-Tokyonight-Dark"
 THEMESTR="listview{lines:4;columns: 3;}"
 THEMESTR+="element{orientation:vertical;}"
 THEMESTR+="element-icon,element-text{horizontal-align:0.5;}"

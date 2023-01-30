@@ -1,7 +1,7 @@
 * {
-  background: #0f111a;
-  fg: #f1f1f1;
-  selected-bg: #ff4151;
+  background: #16161e;
+  fg: #c0caf5;
+  selected-bg: #1f1f32;
 }
 configuration {
 	font: "JetBrains Mono Nerd Font 11";
