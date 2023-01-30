@@ -42,6 +42,39 @@ cmd fzf ${{
     clear
 }}
 
+cmd pdf_decrypt ${{
+	clear
+	echo -n "Password: "
+	read ans
+	if [ -z "$fs" ]; then
+		echo "Decrypting $fs"
+		qpdf --decrypt --password="$ans" "$fs" -- --replace-input
+	else
+		IFS=$'\n'
+		for f in $fs; do
+			echo "Decrypting $f"
+			qpdf --decrypt --password="$ans" "$f" -- --replace-input
+		done
+	fi
+	lf -remote "send unselect"
+	lf -remote "send reload"
+	clear
+}}
+
+cmd pdf_cut_page ${{
+	clear
+	echo -n "Save Page (1-z): "
+	read ans
+	IFS=$'\n'
+	for f in $fs; do
+		echo "Removing page in $f"
+		qpdf "$f" --pages . $ans -- --replace-input
+	done
+	lf -remote "send unselect"
+	lf -remote "send reload"
+	clear
+}}
+
 cmd remove ${{
     clear
     if [ -z "$fs" ]; then
@@ -64,6 +97,9 @@ cmd remove ${{
         fi
     fi
     clear
+		lf -remote "send unselect"
+		lf -remote "send reload"
+		clear;
 }}
 
 cmd copy_paste ${{
@@ -105,6 +141,8 @@ cmd dragandrop ${{
   IFS=$'\n'
   dragon-drop -a -x $fx
   clear
+	lf -remote "send unselect"
+	lf -remote "send reload"
 }}
 
 cmd dragandropcopy ${{
@@ -117,6 +155,9 @@ cmd dragandropcopy ${{
     cp "$file"  "$(pwd)/" &
     progress -m
   done
+	lf -remote "send unselect"
+	lf -remote "send reload"
+	clear;
 }}
 
 cmd dragandropmove ${{
@@ -129,6 +170,8 @@ cmd dragandropmove ${{
     progress -m
   done
   clear
+	lf -remote "send unselect"
+	lf -remote "send reload"
 }}
 
 cmd space2underscore ${{
@@ -136,12 +179,11 @@ cmd space2underscore ${{
 	for i in $fs; 
 	do 
 		FILE=$(basename "$i")    
-		if [[ $FILE == *" "* ]]; then
-			mv "$i" ${FILE// /_}; 
-		else
-			mv "$i" ${FILE//_/ }; 
-		fi
+		mv "$i" ${FILE// /_}; 
 	done
+	lf -remote "send unselect"
+	lf -remote "send reload"
+	clear;
 }}
 
 cmd unarchive ${{
@@ -300,3 +342,5 @@ map xm dragandropmove
 map wp setwp
 map wl setLockScreen
 map stu space2underscore
+map pd pdf_decrypt
+map pc pdf_cut_page
