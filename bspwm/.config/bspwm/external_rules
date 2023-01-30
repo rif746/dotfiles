@@ -10,12 +10,14 @@ case "$class" in
 		echo "state=tiled desktop=1 follow=on" ;;
 	Brave*|Firefox|firefox)
 		echo "state=tiled desktop=2 follow=on" ;;
-	Pcsx2|Steam)
+	Pcsx2)
 		echo "state=floating desktop=3 center=on"	;;
 	Telegram*)
-		echo "state=tiled desktop=5 follow=on" ;;
+		echo "state=tiled desktop=5" ;;
 	zoom*|Zoom*|*join*)
 		echo "state=floating desktop=6 follow=on center=on"	;;
 	mpv)
 		echo "state=fullscreen" ;;
+	Steam|steam)
+		echo "state=floating desktop=6 center=on"
 esac
