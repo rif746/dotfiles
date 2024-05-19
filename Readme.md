@@ -32,13 +32,7 @@ $ sudo pacman -S xclip
 | Panel              | Polybar																				|
 | Panel Font				 | FiraCode Nerd Font															|
 | Browser						 | Qutebrowser																		|
-| Notification       | Dunst																					|
-| Text Editor        | Neovim																					|
-| Language Server		 | sumneko-lua, python-lsp-server, clang,				  |
-|										 | vscode-json-languageserver, intelephense,   		|
-|										 | vscode-html-languageserver,						    		|
-|										 | vscode-css-languageserver, gopls				    		|
-| Menu							 | rofi																						|
+| Notification       | Dunst																					| Menu							 | rofi																						|
 | Music Player       | mpd, mpc, ncmpcpp	 														|
 | Video Player       | mpv																						|
 | Screenshot         | Maim																						|
