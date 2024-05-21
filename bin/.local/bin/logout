@@ -1,6 +1,6 @@
 #!/bin/sh
 
-THEMESTR="listview{lines:2;columns: 3;}"
+THEMESTR="listview{lines:3;}"
 THEMESTR+="inputbar{children:[prompt];}"
 MENU=" Logout|勒 Restart|襤 Shutdown"
 PROMPT="System Exit"
@@ -13,7 +13,7 @@ ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMEST
 
 case $ROFI in
 	*Logout)
-		pkill -KILL -u $USER ;;
+		hyprctl dispatch exit 1 ;;
 	*Restart)
 		loginctl reboot ;;
 	*Shutdown)

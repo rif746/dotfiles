@@ -1,21 +1,27 @@
 # My Dotfiles
 
 ## How To Install
-Please install GNU/Stow before using this config.	
+
+Please install GNU/Stow before using this config.
+
 ```bash
 $ sudo pacman -S stow
 ```
+
 clone repository and use stow to install configuration
+
 ```bash
 $ git clone https://github.com/syarifs/dotfiles.git
 $ cd dotfiles
-$ stow bspwm
+$ stow hyprland
 ```
 
 ## Install Dependency
+
 ##### XClip
+
 ```bash
-$ sudo pacman -S xclip
+$ sudo pacman -S wl-clipboard
 ```
 
 ## Details
@@ -24,23 +30,18 @@ $ sudo pacman -S xclip
 |--------------------|------------------------------------------------|
 | OS                 | Arch Linux																			|
 | Shell							 | ZSH																						|
-| Color Schemes      | Material Ocean																	|
-| Icon               | Material Ocean																	|
-| Notification Daemon| Dunst																					|
-| GTK Theme          | Material Ocean GTK															|
+| Color Schemes      | Catppuccin Mocha																|
+| Icon               | Papirus Catppucin																	|
+| Notification Daemon| Mako																					|
+| GTK Theme          | Catppuccin Mocha Lavender															|
 | File Manager       | PCManFM, [LF](https://github.com/x/lf)					|
-| Panel              | Polybar																				|
-| Panel Font				 | FiraCode Nerd Font															|
+| Panel              | Waybar																				|
+| Panel Font				 | FiraCode Nerd Font, FontAwesome															|
 | Browser						 | Qutebrowser																		|
-| Notification       | Dunst																					|
 | Text Editor        | Neovim																					|
-| Language Server		 | sumneko-lua, python-lsp-server, clang,				  |
-|										 | vscode-json-languageserver, intelephense,   		|
-|										 | vscode-html-languageserver,						    		|
-|										 | vscode-css-languageserver, gopls				    		|
-| Menu							 | rofi																						|
+| Menu							 | rofi-wayland																						|
 | Music Player       | mpd, mpc, ncmpcpp	 														|
 | Video Player       | mpv																						|
-| Screenshot         | Maim																						|
+| Screenshot         | Grim, Slurp																						|
 | Screenrecorder		 | ffmpeg																					|
-| Extra							 | xdotool, perl-image-exif-tool, yt-dlp					|
+| Extra							 | perl-image-exif-tool, yt-dlp					|

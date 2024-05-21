@@ -1,53 +1,36 @@
-* {
-  background: #16161e;
-  fg: #c0caf5;
-  selected-bg: #1f1f32;
-}
+@import "catppuccin-mocha.rasi"
+
 configuration {
 	font: "JetBrains Mono Nerd Font 11";
 }
+
 listview {
 		expand: true;
 		cycle: true;
 		margin: 10px;
 		text-align: center;
-		background-color: var(background);
 }
+
 element {
-		color: var(fg);
 		padding: 10px;
-		background-color: var(background);
 		border-radius: 10px;
 }
-element selected {
-		background-color: var(selected-bg);
-}
+
 element-icon {
 		size: 62;
 }
+
 element-text, element-icon {
 		color: inherit;
 		background-color: inherit;
 }
-mainbox {
-		background-color: var(background);
-}
+
 window {
 		width: 450px;
 		padding: 10px;
-		background-color: var(background);
 }
+
 inputbar {
-		children: [prompt,textbox-prompt-colon,entry];
-		background-color: var(background);
+		children: [prompt,entry];
 		margin: 10px 20px;
-}
-textbox-prompt-colon,entry,prompt {
-		background-color: var(background);
-		text-color: var(fg);
-		color: var(fg);
-}
-textbox-prompt-colon {
-		str: " | ";
-		expand: false;
 }

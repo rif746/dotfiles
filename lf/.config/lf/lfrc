@@ -14,6 +14,12 @@ cmd open ${{
     esac
 }}
 
+cmd setWP ${{
+	convert "$f" ~/.config/.wallpaper.png
+	wal -c
+	wal -i ~/.config/.wallpaper.png
+}}
+
 cmd mkdir ${{
     clear
     echo -n "Directory Name : "
@@ -292,20 +298,6 @@ cmd archive_zip ${{
     clear
 }}
 
-cmd setwp ${{
-  clear
-  echo "Setting up Wallpaper"
-  cp "$f" ~/.config/.wallpaper.png
-  feh --bg-fill "$f"
-  clear
-}}
-
-cmd setLockScreen ${{
-  clear
-  betterlockscreen -u "$f"
-  betterlockscreen -l dim
-  clear
-}}
 
 # unmap default mapping
 map d
@@ -339,8 +331,7 @@ map b ${{ nvim $(pwd) }}
 map xx dragandrop
 map xc dragandropcopy
 map xm dragandropmove
-map wp setwp
-map wl setLockScreen
 map stu space2underscore
 map pd pdf_decrypt
 map pc pdf_cut_page
+map wp setWP

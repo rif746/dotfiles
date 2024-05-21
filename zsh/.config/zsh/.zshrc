@@ -7,3 +7,4 @@ source $ZDOTDIR/lib/options.zsh
 source $ZDOTDIR/lib/environment.zsh
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zshenv

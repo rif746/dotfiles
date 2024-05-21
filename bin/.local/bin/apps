@@ -4,5 +4,6 @@ ICON="oomox-Tokyonight-Dark"
 THEMESTR="listview{lines:4;columns: 3;}"
 THEMESTR+="element{orientation:vertical;}"
 THEMESTR+="element-icon,element-text{horizontal-align:0.5;}"
+PROMPT="Apps"
 
-rofi -show drun -show-icons -no-default-config -icon-theme $ICON -theme-str "$THEMESTR"
+rofi -show drun -show-icons -no-default-config -p "$PROMPT" -icon-theme $ICON -theme-str "$THEMESTR"

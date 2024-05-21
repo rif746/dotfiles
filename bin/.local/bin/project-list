@@ -1,0 +1,60 @@
+#!/bin/sh
+
+PROJECT_FILE=~/.project_dir
+
+if [ ! -f $PROJECT_FILE ]; then
+	echo "PROJECT_DIR=~/Dokumen/Project
+WIKI_DIR=~/Dokumen/Wiki
+DOTFILES_DIR=~/Dokumen/dotfiles
+TERMINAL=kitty" > $PROJECT_FILE;
+fi
+
+run_rofi() {
+	THEMESTR="listview{lines:3;columns: 1;}"
+	THEMESTR+="inputbar{children:[prompt];}"
+	while getopts "p:s:" opt
+	do
+		case "$opt" in
+			s) SEPARATOR="$OPTARG" ;;
+			p) PROMPT="$OPTARG" ;;
+		esac
+	done
+	echo $(rofi -dmenu -no-default-config -theme-str "$THEMESTR" \
+		-p "$PROMPT" -sep "$SEPARATOR")
+}
+
+prompt() {
+	while getopts "l:p:" opt
+	do
+		echo $opt
+		echo $OPTARG
+		case "$opt" in
+			l) PROMPT_ARGS="$OPTARG" ;;
+			p) PROMPT="$OPTARG" ;;
+		esac
+	done
+	ROFI=$(ls "$PROMPT_ARGS" | run_rofi)
+	if [ ! -z $ROFI ]; then
+		kitty -d "$PROMPT_ARGS/$ROFI" 
+	fi
+}
+
+source $PROJECT_FILE
+LIST="Project Wiki Dotfiles"
+MENU_PROMPT="Select Type"
+MENU_LIST=$(echo $LIST | run_rofi -p "$MENU_PROMPT" -s " ")
+
+case $MENU_LIST in
+	Project)
+		PROMPT="Select Project"
+		PROJECT_LIST=$(ls $PROJECT_DIR | run_rofi -p "$PROMPT" -sep "\n")
+		if [ ! -z $PROJECT_LIST ]; then
+			prompt -l "$PROJECT_DIR/$PROJECT_LIST" -p "$PROMPT" 
+		fi
+		;;
+	Wiki)
+		prompt -l "$WIKI_DIR" -p "Select Wiki" ;;
+	Dotfiles)
+		kitty -d "$DOTFILES_DIR"  ;;
+esac
+
