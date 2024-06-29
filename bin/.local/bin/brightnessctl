@@ -16,4 +16,4 @@ fi
 xbacklight $ACT$AMOUNT
 BRIGHT=`xbacklight`
 
-notify-send Brightness -h int:value:$BRIGHT
+notify-send Brightness -h int:value:$BRIGHT -h string:x-canonical-private-synchronous:volume

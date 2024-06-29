@@ -61,3 +61,8 @@ window#waybar {
 #workspaces button.workspace_urgent {
   animation: urgent 1s infinite;
 }
+
+/* volume */
+#wireplumber.muted {
+  text-decoration: line-through;
+}

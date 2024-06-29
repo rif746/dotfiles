@@ -2,7 +2,7 @@
 
 THEMESTR="listview{lines:3;}"
 THEMESTR+="inputbar{children:[prompt];}"
-MENU=" Logout|勒 Restart|襤 Shutdown"
+MENU=" Logout| Restart| Shutdown"
 PROMPT="System Exit"
 
 ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMESTR" <<< $MENU)
@@ -15,7 +15,7 @@ case $ROFI in
 	*Logout)
 		hyprctl dispatch exit 1 ;;
 	*Restart)
-		loginctl reboot ;;
+		systemctl reboot ;;
 	*Shutdown)
-		loginctl poweroff ;;
+		systemctl poweroff ;;
 esac

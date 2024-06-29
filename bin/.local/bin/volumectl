@@ -3,18 +3,22 @@
 
 ACT=""
 
-if [ "$1" != "" ]; then
+if [[ "$1" != "" ]]; then
 	AMOUNT=5%
 fi
-if [ "$1" = "dec" ]; then
+if [[ "$1" == "dec" ]]; then
 	ACT="-"
 fi
 
-if [ "$1" = "inc" ]; then
+if [[ "$1" == "inc" ]]; then
 	ACT="+"
 fi
 
-amixer sset Master $AMOUNT$ACT
-VOL=`awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master)`
+if [[ "$1" == "mute" ]]; then
+	wpctl set-mute @DEFAULT_SINK@ toggle
+	exit 0
+fi
 
-notify-send Volume -h int:value:$VOL
+wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ $AMOUNT$ACT
+VOL=`echo $(wpctl get-volume @DEFAULT_SINK@) | grep -o '[0-9]\+' | tr -d '\n' `
+notify-send Volume -h int:value:$VOL -h string:x-canonical-private-synchronous:volume

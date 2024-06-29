@@ -13,7 +13,7 @@ else
 	PROMPT="Music Player Daemon"
   MENU=""
 fi
-MENU+="||玲|怜|蘿|"
+MENU+="||||󰴙|"
 
 playlist() {
 	THEMESTR="listview{lines:5;columns: 1;}"
@@ -31,8 +31,8 @@ ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMEST
 case $ROFI in
 	|) mpc toggle ;;
 	) mpc stop ;;
-	玲) mpc prev ;;
-	怜) mpc next ;;
-	蘿) playlist ;;
-	) kitty -e ncmpcpp ;;
+	) mpc prev ;;
+	) mpc next ;;
+	󰴙) playlist ;;
+	) kitty -e ncmpcpp ;;
 esac

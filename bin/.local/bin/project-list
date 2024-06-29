@@ -26,8 +26,6 @@ run_rofi() {
 prompt() {
 	while getopts "l:p:" opt
 	do
-		echo $opt
-		echo $OPTARG
 		case "$opt" in
 			l) PROMPT_ARGS="$OPTARG" ;;
 			p) PROMPT="$OPTARG" ;;

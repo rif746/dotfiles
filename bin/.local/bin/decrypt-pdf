@@ -1,2 +1,37 @@
 #!/bin/sh
-ls *.pdf | xargs -I '{}' qpdf --decrypt {} --replace-input --password="$1"
+
+help() {
+	echo "usage:"
+	echo "-p: password"
+	echo "-f: file"
+}
+
+check_available() {
+	if [[ -n $ZSH_VERSION ]]; then
+		builtin whence -p "$1" &> /dev/null
+	else
+		builtin type -p "$1" &> /dev/null
+	fi
+	[[ $? -ne 0 ]] && return 1
+}
+
+while getopts "p:f:" opt; do
+	case "$opt" in
+		p) PASSWORD="$OPTARG" ;;
+		f) FILE="$OPTARG" ;;
+		?) help;
+	esac
+done
+
+if [ -z $PASSWORD ] && [ -z $FILE ]; then
+	help
+	exit 0
+fi
+
+if [ -n $(check_available qpdf) ]; then
+	echo "please install qpdf before run this process"
+	exit 0
+fi
+
+
+ls $FILE | xargs -I '{}' qpdf --decrypt {} --replace-input --password="$PASSWORD"
