@@ -13,9 +13,13 @@ ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMEST
 
 case $ROFI in
 	*Logout)
+		kill $(pidof polybar)
+		kill $(pidof picom)
+		kill $(pidof bspwm)
+		kill $(pidof sxhkd)
 		pkill -KILL -u $USER ;;
 	*Restart)
-		loginctl reboot ;;
+		systemctl reboot ;;
 	*Shutdown)
-		loginctl poweroff ;;
+		systemctl poweroff ;;
 esac

@@ -14,7 +14,7 @@ if [ "$1" = "inc" ]; then
 	ACT="+"
 fi
 
-amixer sset Master $AMOUNT$ACT
-VOL=`awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master)`
+pactl set-sink-volume @DEFAULT_SINK@ $ACT$AMOUNT
+VOL=`pactl get-sink-volume @DEFAULT_SINK@ | grep Volume | head -n 1 | awk '{print $5}'`
 
 notify-send Volume -h int:value:$VOL

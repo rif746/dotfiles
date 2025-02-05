@@ -14,7 +14,7 @@ draw.blood(c, {
 def settings(c):
     # Content
     c.content.javascript.enabled = True
-    c.content.javascript.can_access_clipboard = True
+    c.content.javascript.clipboard = "access-paste"
     c.content.javascript.prompt = False
     c.content.pdfjs = False
     c.content.notifications.enabled = False
@@ -67,6 +67,10 @@ def settings(c):
 
     # Editor Command
     c.editor.command = ['kitty', '-e', 'nvim', '{file}']
+
+    c.url.searchengines = {'DEFAULT': "https://google.com/search?q={}", 'yt': "https://youtube.com/results?search_query={}"}
+    c.url.start_pages = ["https://google.com"]
+    c.url.default_page = "https://google.com"
 
 
 def keybinding(c):
