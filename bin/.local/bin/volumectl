@@ -14,7 +14,16 @@ if [ "$1" = "inc" ]; then
 	ACT="+"
 fi
 
-pactl set-sink-volume @DEFAULT_SINK@ $ACT$AMOUNT
-VOL=`pactl get-sink-volume @DEFAULT_SINK@ | grep Volume | head -n 1 | awk '{print $5}'`
+if [ "$1" = "mute" ]; then
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-notify-send Volume -h int:value:$VOL
+	VOL=`pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}'`
+
+	notify-send Volume "Muted: ${VOL}" -t 1000
+else
+	pactl set-sink-volume @DEFAULT_SINK@ $ACT$AMOUNT
+
+	VOL=`pactl get-sink-volume @DEFAULT_SINK@ | grep Volume | head -n 1 | awk '{print $5}'`
+
+	notify-send Volume -h int:value:$VOL -t 1000
+fi

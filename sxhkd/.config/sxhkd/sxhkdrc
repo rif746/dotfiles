@@ -62,7 +62,7 @@ XF86AudioLowerVolume
 	~/.local/bin/volumectl dec
 
 XF86AudioMute
-	amixer sset Master toggle
+	~/.local/bin/volumectl mute
 
 XF86AudioPlay
 	mpc toggle
@@ -90,3 +90,6 @@ ctrl + alt + {Down,j}
 
 ctrl + alt + Escape
 	killall sxhkd; sxhkd
+
+super + l
+	kitty -e i3lock-fancy 

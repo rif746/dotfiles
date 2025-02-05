@@ -8,7 +8,7 @@ consequences=$4
 case "$class" in
 	kitty|alacritty|*terminal)
 		echo "state=tiled desktop=1 follow=on" ;;
-	Brave*|Firefox|firefox)
+	Brave*|Firefox|firefox|qutebrowser)
 		echo "state=tiled desktop=2 follow=on" ;;
 	Pcsx2)
 		echo "state=floating desktop=3 center=on"	;;
@@ -18,6 +18,6 @@ case "$class" in
 		echo "state=floating desktop=6 follow=on center=on"	;;
 	mpv)
 		echo "state=fullscreen" ;;
-	Steam|steam)
+	Steam|steam|Pcmanfm)
 		echo "state=floating desktop=6 center=on"
 esac

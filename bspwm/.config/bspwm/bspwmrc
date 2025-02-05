@@ -10,6 +10,7 @@ pgrep -x powerkit > /dev/null || powerkit&
 pgrep -x picom > /dev/null || picom -b
 pgrep -x dunst > /dev/null || dunst&
 pgrep -x mpd > /dev/null || mpd&
+pgrep -x xautolock > /dev/null || xautolock -time 5 -locker /usr/bin/i3lock-fancy -detectsleep&
 
 bspc monitor -d 1 2 3 4 5 6
 bspc config external_rules_command "$HOME/.config/bspwm/external_rules"

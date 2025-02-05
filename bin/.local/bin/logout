@@ -2,7 +2,7 @@
 
 THEMESTR="listview{lines:2;columns: 3;}"
 THEMESTR+="inputbar{children:[prompt];}"
-MENU=" Logout|勒 Restart|襤 Shutdown"
+MENU="󰗽 Logout| Restart|󰒲 Suspend|󰐥 Shutdown"
 PROMPT="System Exit"
 
 ROFI=$(rofi -dmenu -no-default-config -p "$PROMPT" -sep "|" -theme-str "$THEMESTR" <<< $MENU)
@@ -20,6 +20,9 @@ case $ROFI in
 		pkill -KILL -u $USER ;;
 	*Restart)
 		systemctl reboot ;;
+	*Suspend)
+		i3lock-fancy
+		systemctl suspend ;;
 	*Shutdown)
 		systemctl poweroff ;;
 esac

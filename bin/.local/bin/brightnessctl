@@ -2,18 +2,33 @@
 
 
 ACT=""
+BACKLIGHT=$(ls /sys/class/backlight)
+BRIGHTNESS_FILE="/sys/class/backlight/$BACKLIGHT/brightness"
+BRIGHTNESS_VAL=$(cat $BRIGHTNESS_FILE)
 
 if [ "$1" != "" ]; then
-	AMOUNT=5%
+	AMOUNT=5
+else
+	AMOUNT=$2
 fi
 
 if [ "$1" = "dec" ]; then
-	ACT="-"
+	BRIGHTNESS_VAL=$(echo $BRIGHTNESS_VAL-$AMOUNT | bc)
 elif [ "$1" = "inc" ]; then
-	ACT="+"
+	BRIGHTNESS_VAL=$(echo $BRIGHTNESS_VAL+$AMOUNT | bc)
 fi
 
-xbacklight $ACT$AMOUNT
-BRIGHT=`xbacklight`
+if [ $BRIGHTNESS_VAL -gt 100 ]; then
+	BRIGHTNESS_VAL=100
+fi
 
-notify-send Brightness -h int:value:$BRIGHT
+if [ $BRIGHTNESS_VAL -lt 5 ]; then
+	BRIGHTNESS_VAL=5
+fi
+
+echo $BRIGHTNESS_VAL
+
+
+echo $BRIGHTNESS_VAL > $BRIGHTNESS_FILE;
+
+notify-send Brightness -h int:value:$BRIGHTNESS_VAL
