@@ -16,8 +16,6 @@ cmd open ${{
 
 cmd setWP ${{
 	convert "$f" ~/.config/.wallpaper.png
-	wal -c
-	wal -i ~/.config/.wallpaper.png
 }}
 
 cmd mkdir ${{

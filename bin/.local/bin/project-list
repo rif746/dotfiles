@@ -3,9 +3,10 @@
 PROJECT_FILE=~/.project_dir
 
 if [ ! -f $PROJECT_FILE ]; then
-	echo "PROJECT_DIR=~/Dokumen/Project
-WIKI_DIR=~/Dokumen/Wiki
-DOTFILES_DIR=~/Dokumen/dotfiles
+	eval $(cat $XDG_CONFIG_HOME/user-dirs.dirs | grep DOCUMENTS)
+	echo "PROJECT_DIR=$XDG_DOCUMENTS_DIR/Project
+WIKI_DIR=$XDG_DOCUMENTS_DIR/Wiki
+DOTFILES_DIR=$XDG_DOCUMENTS_DIR/dotfiles
 TERMINAL=kitty" > $PROJECT_FILE;
 fi
 
@@ -45,7 +46,15 @@ MENU_LIST=$(echo $LIST | run_rofi -p "$MENU_PROMPT" -s " ")
 case $MENU_LIST in
 	Project)
 		PROMPT="Select Project"
+
 		PROJECT_LIST=$(ls $PROJECT_DIR | run_rofi -p "$PROMPT" -sep "\n")
+
+		LS=$(ls $PROJECT_DIR/$PROJECT_LIST/.git >> /dev/null)
+		if [ -z $LS ]; then
+			$TERMINAL -d $PROJECT_DIR/$PROJECT_LIST
+			exit
+		fi
+
 		if [ ! -z $PROJECT_LIST ]; then
 			prompt -l "$PROJECT_DIR/$PROJECT_LIST" -p "$PROMPT" 
 		fi
@@ -53,6 +62,6 @@ case $MENU_LIST in
 	Wiki)
 		prompt -l "$WIKI_DIR" -p "Select Wiki" ;;
 	Dotfiles)
-		kitty -d "$DOTFILES_DIR"  ;;
+		$TERMINAL -d "$DOTFILES_DIR"  ;;
 esac
 
